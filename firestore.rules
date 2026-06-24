@@ -1,0 +1,38 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+    function isAdmin() {
+      return signedIn() && request.auth.token.email == "healthpath27@gmail.com";
+    }
+    match /users/{userId} {
+      allow read: if isAdmin() || (signedIn() && request.auth.uid == userId);
+      allow create: if signedIn()
+        && request.auth.uid == userId
+        && !("billing" in request.resource.data);
+      allow update: if signedIn()
+        && request.auth.uid == userId
+        && !request.resource.data.diff(resource.data).affectedKeys().hasAny(["billing"]);
+      allow delete: if signedIn() && request.auth.uid == userId;
+    }
+    match /topicLessons/{topicId}/lessons/{lessonId} {
+      allow read: if signedIn();
+      allow write: if false;
+    }
+    match /lessonFeedback/{feedbackId} {
+      allow create: if signedIn();
+      allow read, update, delete: if isAdmin();
+    }
+    match /dailyLessonRuns/{runId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+    match /digestRuns/{runId} {
+      allow read: if isAdmin();
+      allow write: if false;
+    }
+  }
+}

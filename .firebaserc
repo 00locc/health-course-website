@@ -1,0 +1,13 @@
+{
+  "projects": {
+    "default": "healthpath-academy"
+  },
+  "targets": {},
+  "etags": {
+    "healthpath-academy": {
+      "extensionInstances": {
+        "firestore-send-email": "aa68a0e35bdfe6e114d8c0675c7079790badca134ef65de1973c37002da9c138"
+      }
+    }
+  }
+}

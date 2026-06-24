@@ -1,0 +1,1617 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>
+(function(){
+  var canonicalHost = "healthpathacademy.net";
+  var oldHosts = ["healthpath-academy.web.app", "www.healthpathacademy.net"];
+  if(oldHosts.indexOf(location.hostname) !== -1){
+    location.replace("https://" + canonicalHost + location.pathname + location.search + location.hash);
+  }
+})();
+</script>
+<meta name="description" content="HealthPath Academy is a free beta health study platform with structured lessons, quizzes, notes, progress tracking, certificates, and safety-framed review for nursing, medical, allied health, and public health learners.">
+<meta name="keywords" content="health study app, nursing student study tool, medical student study tool, healthcare education, clinical lessons, health quizzes, public health learning, allied health study, HealthPath Academy">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0d9488">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="HealthPath">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="canonical" href="https://healthpathacademy.net/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="HealthPath Academy">
+<meta property="og:title" content="HealthPath Academy | Structured Health Lessons, Quizzes, and Progress">
+<meta property="og:description" content="Study nursing, medical, allied health, and public health topics with structured lessons, knowledge checks, notes, progress tracking, and certificates.">
+<meta property="og:url" content="https://healthpathacademy.net/">
+<meta property="og:image" content="https://healthpathacademy.net/assets/icon-512.svg">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HealthPath Academy | Health Lessons Without Scattered Notes">
+<meta name="twitter:description" content="Structured health lessons, quizzes, notes, progress tracking, and certificates for healthcare learners.">
+<meta name="twitter:image" content="https://healthpathacademy.net/assets/icon-512.svg">
+<title>HealthPath Academy | Structured Health Lessons, Quizzes, and Progress</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/healthpath-crest.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon-192.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "EducationalOrganization",
+  "name": "HealthPath Academy",
+  "url": "https://healthpathacademy.net/",
+  "logo": "https://healthpathacademy.net/assets/healthpath-logo.svg",
+  "description": "HealthPath Academy is a free beta health study platform with structured lessons, quizzes, notes, progress tracking, certificates, and safety-framed review for nursing, medical, allied health, and public health learners.",
+  "email": "healthpath27@gmail.com"
+}
+</script>
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:74px;-webkit-text-size-adjust:100%}
+body{font-family:Manrope,Inter,ui-sans-serif,system-ui,-apple-system,sans-serif;background:#f7fbff;color:#07162c;line-height:1.5;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none}
+button{cursor:pointer;font-family:inherit}
+
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --green:#10b981;
+  --green-d:#059669;
+  --teal:#14b8a6;
+  --blue:#2563eb;
+  --navy:#07162c;
+  --navy-2:#06152d;
+  --ink:#07162c;
+  --muted:#5f7188;
+  --border:#e3eaf2;
+  --white:#fff;
+  --bg:#f7fbff;
+  --card-bg:#fff;
+  --radius-sm:6px;
+  --radius-md:9px;
+  --radius-lg:13px;
+  --radius-xl:16px;
+  --shadow-card:0 14px 35px rgba(15,23,42,.06);
+  --shadow-lift:0 22px 50px rgba(15,23,42,.1);
+}
+@property --ring-blue{syntax:"<percentage>";inherits:true;initial-value:0%}
+@property --ring-teal{syntax:"<percentage>";inherits:true;initial-value:0%}
+@property --ring-purple{syntax:"<percentage>";inherits:true;initial-value:0%}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:70px;
+  display:flex;align-items:center;
+  padding:0 clamp(16px,4vw,48px);
+  gap:clamp(12px,2vw,28px);
+  background:#020713;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  transition:box-shadow .25s;
+}
+nav.scrolled{box-shadow:0 8px 32px rgba(2,7,19,.3)}
+
+.nav-logo{
+  display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;flex-shrink:0;
+  padding:0;
+  background:none;
+  border:none;
+}
+.nav-logo-mark{width:38px;height:38px;flex-shrink:0}
+.nav-logo-mark img{width:100%;height:100%;object-fit:contain;display:block}
+.nav-logo-lockup{width:148px;max-width:36vw;height:auto;max-height:48px;object-fit:contain;display:block}
+.nav-logo-text{display:flex;flex-direction:column;gap:1px}
+.nav-logo-text .t1{
+  font-size:17px;font-weight:900;color:#ffffff;
+  letter-spacing:-.02em;line-height:1.1;
+  font-family:'Plus Jakarta Sans',Manrope,sans-serif;
+}
+.nav-logo-text .t2{
+  font-size:10px;font-weight:800;color:#1cd9b6;
+  text-transform:uppercase;letter-spacing:.24em;line-height:1;
+}
+
+.nav-links{
+  display:flex;align-items:center;gap:4px;
+  margin-left:clamp(16px,3vw,36px);
+}
+.nav-links a{
+  display:inline-flex;align-items:center;gap:5px;
+  color:rgba(255,255,255,.85);font-size:13px;font-weight:700;
+  padding:8px 10px;border-radius:8px;
+  transition:color .15s,background .15s;
+  white-space:nowrap;
+}
+.nav-links a .chevron{
+  display:inline-block;width:0;height:0;
+  border-left:4px solid transparent;
+  border-right:4px solid transparent;
+  border-top:5px solid currentColor;
+  opacity:.6;margin-top:1px;
+}
+.nav-links a:hover{color:#fff;background:rgba(255,255,255,.08)}
+
+.nav-r{display:flex;align-items:center;gap:10px;margin-left:auto;flex-shrink:0}
+.nav-r .btn-ghost{
+  color:rgba(255,255,255,.85);font-size:13px;font-weight:700;
+  padding:10px 16px;border-radius:8px;background:transparent;border:0;
+  transition:background .15s,color .15s;white-space:nowrap;
+}
+.nav-r .btn-ghost:hover{background:rgba(255,255,255,.08);color:#fff}
+.nav-r .btn-signup{
+  display:inline-flex;align-items:center;justify-content:center;
+  background:#10b981;color:#fff;font-size:13px;font-weight:800;
+  padding:10px 20px;border-radius:8px;border:0;
+  box-shadow:0 8px 20px rgba(16,185,129,.25);
+  transition:background .15s,box-shadow .15s,transform .15s;
+  white-space:nowrap;
+}
+.nav-r .btn-signup:hover{background:#059669;box-shadow:0 12px 26px rgba(16,185,129,.35);transform:translateY(-1px)}
+
+/* signed in state */
+.signed-in-nav{display:none;align-items:center;gap:10px;position:relative}
+.user-chip{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:50%;
+  background:linear-gradient(135deg,var(--a1,#10b981),var(--a2,#2563eb));
+  color:#fff;font-size:13px;font-weight:900;
+  border:2.5px solid rgba(255,255,255,.15);
+  cursor:pointer;overflow:hidden;
+}
+.user-chip img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.landing-menu{
+  display:none;position:absolute;right:0;top:48px;
+  width:180px;background:#fff;border:1px solid var(--border);
+  border-radius:12px;box-shadow:0 16px 40px rgba(15,23,42,.14);
+  padding:6px;z-index:200;
+}
+.landing-menu.show{display:block}
+.landing-menu a,.landing-menu button{
+  display:block;width:100%;text-align:left;
+  padding:9px 12px;border-radius:8px;
+  font-size:13px;font-weight:700;color:#07162c;
+  background:transparent;border:0;
+}
+.landing-menu a:hover,.landing-menu button:hover{background:#f0f5ff;color:#2563eb}
+
+/* ============================================================
+   SHARED BUTTONS
+   ============================================================ */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  font-family:inherit;font-weight:800;font-size:14px;
+  padding:13px 24px;border-radius:8px;border:1.5px solid transparent;
+  cursor:pointer;transition:background .15s,box-shadow .15s,transform .15s,border-color .15s,color .15s;
+  white-space:nowrap;
+}
+.btn-primary{background:#10b981;color:#fff;border-color:#10b981;box-shadow:0 10px 24px rgba(16,185,129,.24)}
+.btn-primary:hover{background:#059669;border-color:#059669;transform:translateY(-1px);box-shadow:0 14px 30px rgba(16,185,129,.34)}
+.btn-outline{background:transparent;color:#fff;border-color:rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.5)}
+.btn-outline-dark{background:transparent;color:#07162c;border-color:#d0dce8}
+.btn-outline-dark:hover{border-color:#10b981;color:#059669}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative;
+  padding:clamp(100px,14vw,130px) clamp(16px,4vw,48px) clamp(60px,8vw,90px);
+  background:linear-gradient(180deg,#020713 0%,#061024 100%);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:70px 0 0;
+  background-image:
+    linear-gradient(rgba(20,184,166,.042) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(20,184,166,.032) 1px,transparent 1px);
+  background-size:58px 58px;
+  mask-image:linear-gradient(180deg,rgba(0,0,0,.65),transparent 90%);
+  pointer-events:none;
+}
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1280px;margin:0 auto;
+  display:grid;
+  grid-template-columns:minmax(0,420px) minmax(0,400px) minmax(260px,320px);
+  gap:clamp(14px,2.5vw,28px);
+  align-items:center;
+}
+
+/* hero copy */
+.hero-eyebrow{
+  display:inline-flex;
+  padding:8px 14px;border-radius:6px;
+  background:rgba(20,184,166,.1);border:1px solid rgba(20,184,166,.18);
+  color:#0fd1af;font-size:11px;font-weight:900;
+  text-transform:uppercase;letter-spacing:.08em;
+  margin-bottom:18px;
+}
+.hero-copy h1{
+  font-family:"Plus Jakarta Sans",Manrope,sans-serif;
+  font-size:clamp(34px,4.5vw,46px);
+  font-weight:900;line-height:1.07;
+  color:#fff;letter-spacing:-.02em;
+  margin-bottom:18px;
+}
+.hero-copy h1 span{display:block;color:#10b981}
+.hero-sub{
+  font-size:clamp(13px,1.4vw,14px);font-weight:600;
+  color:rgba(255,255,255,.78);line-height:1.72;
+  max-width:400px;margin-bottom:26px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px}
+.hero-proof{
+  display:grid;grid-template-columns:repeat(2,max-content);
+  gap:10px 20px;list-style:none;
+}
+.hero-proof li{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:800;color:rgba(255,255,255,.78);
+}
+.hero-proof li::before{
+  content:"";flex-shrink:0;
+  width:20px;height:20px;border-radius:6px;
+  border:1px solid rgba(20,184,166,.4);
+  background:rgba(20,184,166,.08);
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 12 12' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 6.5l3 3 5-5.5' stroke='%230fd1af' stroke-width='1.7' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:center;background-size:10px;
+}
+
+/* hero heart */
+.hero-heart-col{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  min-height:360px;
+}
+.hero-heart{
+  position:relative;z-index:2;
+  width:min(390px,100%);
+  filter:drop-shadow(0 24px 60px rgba(3,12,30,.5));
+  animation:heartFloat 7s ease-in-out infinite;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%,#000 48%,rgba(0,0,0,.9) 62%,rgba(0,0,0,.3) 72%,transparent 80%);
+  mask-image:radial-gradient(circle at 50% 50%,#000 48%,rgba(0,0,0,.9) 62%,rgba(0,0,0,.3) 72%,transparent 80%);
+}
+/* ECG line behind heart */
+.hero-ecg{
+  position:absolute;z-index:1;
+  left:-60px;right:-60px;
+  top:calc(50% - 44px);
+  height:90px;overflow:hidden;pointer-events:none;
+}
+.hero-ecg svg{width:100%;height:100%}
+.ecg-track{animation:ecgScroll 2.4s linear infinite}
+.ecg-base{stroke:rgba(2,132,199,.3);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.ecg-glow{stroke:#38bdf8;stroke-width:4.2;fill:none;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 7px rgba(56,189,248,.7))}
+
+/* floating badges on heart */
+.med-badge{
+  position:absolute;z-index:3;
+  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:11px;
+  background:rgba(2,8,23,.45);
+  border:1px solid rgba(20,184,166,.22);
+  color:#21ddb9;font-size:11px;font-weight:900;
+  backdrop-filter:blur(8px);
+}
+.med-badge.a{top:52px;left:clamp(16px,6%,60px)}
+.med-badge.b{top:68px;right:clamp(16px,5%,40px)}
+.med-badge.c{bottom:70px;right:clamp(16px,6%,60px)}
+
+/* hero right panels */
+.hero-panels{display:grid;gap:14px}
+.hpanel{
+  position:relative;overflow:hidden;
+  background:linear-gradient(145deg,rgba(22,34,64,.94),rgba(12,22,44,.9));
+  border:1px solid rgba(148,163,184,.13);
+  border-radius:var(--radius-lg);
+  padding:16px 18px;
+  color:#fff;
+  box-shadow:0 18px 50px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.045);
+  backdrop-filter:blur(18px);
+  transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease,background .22s ease;
+  will-change:transform;
+  animation:panelFloat 7s ease-in-out infinite;
+}
+.hpanel:nth-child(2){animation-delay:-2.2s}
+.hpanel:nth-child(3){animation-delay:-4.4s}
+.hpanel:hover{
+  transform:translateY(-8px);
+  border-color:rgba(34,211,238,.28);
+  box-shadow:0 28px 70px rgba(0,0,0,.32),0 0 28px rgba(37,99,235,.12),inset 0 1px 0 rgba(255,255,255,.075);
+  background:linear-gradient(145deg,rgba(25,42,78,.98),rgba(12,28,52,.94));
+  animation-play-state:paused;
+}
+@keyframes panelFloat{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-7px)}
+}
+.hpanel::before{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 92% 14%,rgba(16,185,129,.15),transparent 34%);
+  opacity:.9;
+  transition:opacity .22s ease,transform .22s ease;
+}
+.hpanel:hover::before{opacity:1;transform:scale(1.08)}
+.hpanel>*{position:relative}
+.hpanel-label{
+  font-size:10px;font-weight:900;letter-spacing:.07em;
+  text-transform:uppercase;color:rgba(255,255,255,.55);
+  margin-bottom:11px;
+}
+
+/* goal panel */
+.goal-row{display:grid;grid-template-columns:1fr 54px;gap:12px;align-items:center}
+.goal-text{font-size:12px;color:rgba(255,255,255,.72);margin-top:3px}
+.goal-meter-row{display:flex;align-items:center;gap:10px;margin-top:10px}
+.goal-bar{flex:1;height:7px;border-radius:99px;background:#2a3a56;overflow:hidden}
+.goal-bar span{display:block;height:100%;width:0%;background:linear-gradient(90deg,#10b981,#38bdf8);border-radius:inherit}
+.goal-pct{font-size:11px;font-weight:900;color:rgba(255,255,255,.7)}
+.goal-ring{
+  width:50px;height:50px;border-radius:50%;
+  display:grid;place-items:center;
+  background:conic-gradient(#10b981 0 0%,#1d2c48 0%);
+  color:#10b981;position:relative;
+  box-shadow:0 0 0 6px rgba(16,185,129,.07);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.hpanel:hover .goal-ring{transform:scale(1.05);box-shadow:0 0 0 7px rgba(16,185,129,.1),0 0 22px rgba(16,185,129,.2)}
+.goal-ring::before{content:"";position:absolute;inset:8px;border-radius:50%;background:#0f1c35}
+.goal-ring-icon{position:relative;z-index:1;width:18px;height:10px;border:0 solid #10b981;border-bottom-width:2.5px;border-left-width:2.5px;transform:rotate(-45deg);margin-top:-4px}
+
+/* streak panel */
+.streak-top{display:flex;align-items:flex-end;gap:9px;margin-bottom:6px}
+.streak-fire{font-size:22px;line-height:1;filter:drop-shadow(0 0 8px rgba(249,115,22,.22))}
+.hpanel:hover .streak-fire{animation:flameBounce .7s ease both}
+@keyframes flameBounce{0%,100%{transform:translateY(0) scale(1)}45%{transform:translateY(-3px) scale(1.08)}}
+.streak-days{font-size:20px;font-weight:900;color:#fff}
+.streak-label{font-size:11px;color:rgba(255,255,255,.6);margin-bottom:3px}
+.streak-sub{font-size:11px;color:rgba(255,255,255,.55);margin-bottom:9px}
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;text-align:center}
+.week-labels{color:rgba(255,255,255,.38);font-size:9px;font-weight:900}
+.week-dots{margin-top:6px}
+.week-dots span{
+  display:flex;align-items:center;justify-content:center;
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid #10b981;
+  background:rgba(16,185,129,.06);
+  justify-self:center;
+  color:#10b981;font-size:0;
+}
+.week-dots span::before{
+  content:"";
+  width:7px;height:4px;
+  border-bottom:1.6px solid currentColor;
+  border-left:1.6px solid currentColor;
+  transform:rotate(-45deg);
+}
+.week-dots span.empty{border-color:#455570;border-style:dashed;background:transparent;color:transparent}
+.week-dots span.empty::before{display:none}
+
+/* progress panel */
+.progress-row{display:grid;grid-template-columns:86px 1fr;gap:14px;align-items:center}
+.prog-ring{
+  width:82px;height:82px;border-radius:50%;
+  background:conic-gradient(#2563eb 0 43%,#14b8a6 43% 75%,#7c3aed 75% 88%,#2b3852 88%);
+  display:grid;place-items:center;
+  font-size:18px;font-weight:900;color:#fff;
+  position:relative;
+  box-shadow:0 0 24px rgba(37,99,235,.12);
+  transition:transform .22s ease,box-shadow .22s ease;
+}
+.hpanel:hover .prog-ring{transform:scale(1.04);box-shadow:0 0 34px rgba(37,99,235,.2)}
+.prog-ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:#101b34;box-shadow:inset 0 1px 3px rgba(0,0,0,.25)}
+.prog-ring b{position:relative}
+.prog-legend{display:grid;gap:8px}
+.prog-legend span{
+  display:grid;grid-template-columns:10px 1fr auto;
+  gap:7px;align-items:center;
+  font-size:11px;color:rgba(255,255,255,.75);
+}
+.prog-legend i{width:9px;height:9px;border-radius:50%;background:var(--c);flex-shrink:0}
+.prog-legend b{color:#fff;font-size:11px;font-weight:900}
+
+/* ============================================================
+   STATS BAR
+   ============================================================ */
+.stats-bar{
+  position:relative;z-index:2;
+  max-width:1280px;margin:-48px auto 0;
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:#fff;
+  border:1px solid #e4ebf3;border-radius:var(--radius-md);
+  box-shadow:0 16px 42px rgba(15,23,42,.09);
+  overflow:hidden;
+}
+.stats-bar-wrap{padding:0 clamp(16px,4vw,48px)}
+.stat-item{
+  display:flex;align-items:center;gap:11px;
+  padding:0 clamp(16px,2.5vw,34px);
+  min-height:84px;
+  border-right:1px solid #edf1f6;
+}
+.stat-item:last-child{border-right:0}
+.stat-icon{
+  flex-shrink:0;width:26px;height:26px;
+  color:#2563eb;position:relative;
+}
+.stat-icon svg{width:100%;height:100%;display:block;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.stat-text b{display:block;font-size:clamp(18px,2vw,22px);font-weight:900;color:#07162c}
+.stat-text span{font-size:11px;color:#4d6178;font-weight:700}
+
+/* ============================================================
+   SHARED SECTION UTILS
+   ============================================================ */
+.section-kicker{
+  display:block;color:#10b981;
+  font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;
+  margin-bottom:10px;
+}
+.section-head-flex{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  gap:16px;margin-bottom:22px;flex-wrap:wrap;
+}
+.section-head-flex h2{
+  font-family:"Plus Jakarta Sans",Manrope,sans-serif;
+  font-size:clamp(22px,3vw,28px);font-weight:900;
+  color:#07162c;line-height:1.18;margin-bottom:5px;
+}
+.section-head-flex p{font-size:13px;color:#52667e;font-weight:600;margin-top:4px}
+.view-link{font-size:12px;font-weight:900;color:#2563eb;white-space:nowrap;flex-shrink:0}
+.view-link:hover{text-decoration:underline}
+.section-wrap{
+  max-width:1280px;margin:0 auto;
+  padding:clamp(48px,6vw,72px) clamp(16px,4vw,48px) 0;
+}
+.section-center{text-align:center}
+.section-center h2{
+  font-family:"Plus Jakarta Sans",Manrope,sans-serif;
+  font-size:clamp(22px,3vw,28px);font-weight:900;
+  color:#07162c;line-height:1.18;
+  margin-bottom:6px;
+}
+.section-center p{font-size:13px;color:#52667e}
+
+/* dots */
+.dot-row{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.dot-row span{width:7px;height:7px;border-radius:50%;background:#d4ddec}
+.dot-row span:first-child{background:#2563eb}
+
+/* ============================================================
+   CLINICAL FIELDS CAROUSEL
+   ============================================================ */
+.fields-viewport{overflow:hidden;padding:2px 0 6px;margin-top:4px}
+.fields-track{
+  display:flex;gap:clamp(14px,2vw,22px);
+  will-change:transform;
+  user-select:none;
+}
+.fields-track.is-scrolling{animation:fieldsMarquee 18s linear infinite}
+.fields-viewport:hover .fields-track.is-scrolling{animation-play-state:paused}
+
+.field-card{
+  flex:0 0 clamp(180px,calc((100% - 110px)/6),230px);
+  background:#fff;border:1px solid #e5edf5;
+  border-radius:var(--radius-md);padding:22px 18px;
+  min-height:280px;
+  box-shadow:var(--shadow-card);
+  transition:transform .2s ease,box-shadow .2s ease,border-color .2s ease;
+  cursor:default;
+}
+.field-card:hover{
+  transform:translateY(-6px);
+  box-shadow:var(--shadow-lift);
+  border-color:rgba(20,184,166,.32);
+}
+.field-icon{
+  width:46px;height:46px;border-radius:12px;
+  display:grid;place-items:center;
+  margin-bottom:16px;
+  background:#fff3e8;color:#f97316;
+}
+.field-icon svg{width:24px;height:24px;display:block;stroke:currentColor;stroke-width:2.3;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.field-icon.blue{background:#eef4ff;color:#2563eb}
+.field-icon.red{background:#fff1f2;color:#ef4444}
+.field-icon.green{background:#ecfdf5;color:#10b981}
+.field-icon.purple{background:#f5f3ff;color:#8b5cf6}
+.field-icon.pink{background:#fdf2f8;color:#db2777}
+.field-icon.sky{background:#f0f9ff;color:#0ea5e9}
+.field-card h3{font-size:15px;font-weight:900;color:#07162c;line-height:1.2;margin-bottom:9px}
+.field-card p{font-size:12px;color:#52667e;line-height:1.58;min-height:70px}
+.field-card-meta{margin-top:14px}
+.field-card-meta b{display:block;font-size:11px;color:#07162c;margin-bottom:8px}
+.field-bar{height:6px;border-radius:99px;background:#e8edf5;overflow:hidden}
+.field-bar span{display:block;height:100%;border-radius:inherit;background:#2563eb;min-width:2px}
+.field-card small{display:block;margin-top:10px;font-size:11px;font-weight:700;color:#34465c}
+
+/* ============================================================
+   HOW IT WORKS + DASHBOARD + WHY
+   ============================================================ */
+.journey-grid{
+  display:grid;
+  grid-template-columns:clamp(240px,26%,320px) 1fr clamp(240px,26%,310px);
+  gap:clamp(28px,4vw,48px);align-items:center;
+}
+
+/* steps */
+.steps-col{position:relative}
+.steps-col::before{
+  content:"";position:absolute;
+  left:13px;top:14px;bottom:14px;width:2px;
+  background:linear-gradient(180deg,rgba(37,99,235,.15),rgba(37,99,235,.55),rgba(37,99,235,.15));
+  border-radius:99px;
+}
+.step{
+  position:relative;z-index:1;
+  display:grid;grid-template-columns:28px 36px 1fr;
+  gap:10px;align-items:start;
+  margin-bottom:16px;
+}
+.step:last-child{margin-bottom:0}
+.step-num{
+  width:27px;height:27px;border-radius:50%;
+  background:#2563eb;color:#fff;
+  display:grid;place-items:center;
+  font-size:11px;font-weight:900;
+  box-shadow:0 6px 16px rgba(37,99,235,.25),0 0 0 4px #fff;
+}
+.step-icon{
+  width:35px;height:35px;border-radius:10px;
+  background:#e8f5ff;color:#2563eb;
+  display:grid;place-items:center;
+}
+.step-icon svg{width:18px;height:18px;display:block;stroke:currentColor;stroke-width:2.1;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.step:nth-child(2) .step-icon{background:#e9f8ff;color:#0891b2}
+.step:nth-child(3) .step-icon{background:#f3f1ff;color:#7c3aed}
+.step:nth-child(4) .step-icon{background:#e8fbf2;color:#10b981}
+.step:nth-child(5) .step-icon{background:#eef7ff;color:#2563eb}
+.step h3{font-size:12px;font-weight:900;color:#07162c;margin-bottom:3px}
+.step p{font-size:11px;color:#64748b;line-height:1.5}
+
+/* dashboard card */
+.dash-card{
+  --ring-blue:0%;
+  --ring-teal:0%;
+  --ring-purple:0%;
+  background:linear-gradient(145deg,#06152d,#081a35 55%,#051025);
+  border-radius:var(--radius-xl);
+  padding:18px;color:#fff;
+  box-shadow:0 24px 55px rgba(15,23,42,.22),inset 0 1px 0 rgba(255,255,255,.035);
+  transition:transform .24s ease,box-shadow .24s ease,border-color .24s ease;
+  will-change:transform;
+}
+.dash-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 34px 70px rgba(15,23,42,.28),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.reveal.in .dash-card{
+  animation:ringSegments 1.25s cubic-bezier(.22,1,.36,1) .18s forwards;
+}
+@keyframes ringSegments{
+  from{--ring-blue:0%;--ring-teal:0%;--ring-purple:0%}
+  to{--ring-blue:42%;--ring-teal:75%;--ring-purple:88%}
+}
+.dash-card .section-kicker{color:#9fb3c8}
+.dash-card h2{color:#fff;font-size:clamp(18px,2.5vw,22px);font-weight:900;margin-bottom:14px;line-height:1.2}
+.dash-window{
+  display:grid;grid-template-columns:44px 1fr;gap:14px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(148,163,184,.14);
+  border-radius:10px;padding:14px;
+}
+.dash-rail{
+  display:grid;gap:8px;align-content:start;justify-items:center;
+}
+.dash-rail-btn{
+  width:29px;height:29px;border-radius:8px;
+  background:rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;
+}
+.dash-rail-btn.active{background:#2563eb;box-shadow:0 8px 18px rgba(37,99,235,.22)}
+.dash-rail-btn svg{width:14px;height:14px;display:block;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;color:rgba(255,255,255,.7)}
+.dash-rail-btn.active svg{color:#fff}
+.dash-main{display:grid;gap:9px}
+.dash-box{
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.05);
+  border-radius:8px;padding:12px;
+  position:relative;
+}
+.dash-box-title{font-size:11px;font-weight:900;color:#fff;margin-bottom:8px}
+.wave-emoji{display:inline-block;margin-left:.12em;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.wave-emoji:before{content:"\1F44B"}
+.dash-metrics{display:grid;grid-template-columns:1fr 88px;gap:8px}
+.dash-list{display:grid;gap:6px}
+.dash-list-item{
+  display:grid;grid-template-columns:14px 1fr auto;
+  gap:7px;align-items:center;
+  font-size:10px;color:#d5e2ef;
+}
+.dash-dot{
+  width:12px;height:12px;border-radius:50%;
+  background:rgba(var(--cr),var(--cg),var(--cb),.18);
+  color:rgb(var(--cr),var(--cg),var(--cb));
+  display:grid;place-items:center;
+}
+.dash-dot::before{
+  content:"";
+  width:5px;height:3px;
+  border-bottom:1.4px solid currentColor;
+  border-left:1.4px solid currentColor;
+  transform:rotate(-45deg);
+}
+.dash-val{font-weight:900;color:#fff;font-size:10px}
+.mini-ring{
+  width:80px;height:80px;border-radius:50%;
+  background:conic-gradient(#2563eb 0 var(--ring-blue),#14b8a6 var(--ring-blue) var(--ring-teal),#7c3aed var(--ring-teal) var(--ring-purple),#2b3852 var(--ring-purple));
+  display:grid;place-items:center;
+  font-size:16px;font-weight:900;
+  position:relative;
+}
+.mini-ring::before{content:"";position:absolute;inset:12px;border-radius:50%;background:#101b34}
+.mini-ring b{position:relative;color:#fff}
+.dash-close{position:absolute;right:10px;top:8px;color:#7a93b0;font-size:13px;line-height:1}
+.dash-activity{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end}
+.dash-activity-title{font-size:11px;font-weight:900;color:#fff;margin-bottom:8px}
+.mini-week-labels,.mini-week{display:grid;grid-template-columns:repeat(6,20px);gap:8px}
+.mini-week-labels{color:#9fb3c8;font-size:8px;font-weight:900;text-align:center;margin-bottom:5px}
+.mini-week span{
+  width:18px;height:18px;border-radius:50%;
+  border:1.3px solid #10b981;background:rgba(16,185,129,.06);
+  display:grid;place-items:center;font-size:0;color:#10b981;
+}
+.mini-week span::before{content:"";width:6px;height:3.5px;border-bottom:1.4px solid currentColor;border-left:1.4px solid currentColor;transform:rotate(-45deg)}
+.mini-week span.empty{border-color:#74849c;border-style:dashed;background:transparent;color:transparent}
+.mini-week span.empty::before{display:none}
+.mini-streak{display:flex;align-items:center;gap:5px;color:#fff;font-weight:900;font-size:11px}
+.mini-streak-fire{font-size:22px;line-height:1}
+
+/* why col */
+.why-col .section-kicker{text-align:left}
+.why-col h2{
+  font-family:"Plus Jakarta Sans",Manrope,sans-serif;
+  font-size:clamp(20px,2.5vw,24px);font-weight:900;
+  color:#07162c;line-height:1.2;margin-bottom:16px;
+}
+.why-list{display:grid;gap:12px;margin-bottom:22px}
+.why-item{
+  display:flex;gap:10px;align-items:flex-start;
+  font-size:13px;color:#34465c;font-weight:600;line-height:1.45;
+}
+.why-check{
+  flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  background:#ecfdf5;
+  display:grid;place-items:center;margin-top:1px;
+}
+.why-check svg{width:11px;height:11px;display:block;stroke:#10b981;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+/* ============================================================
+   TESTIMONIALS
+   ============================================================ */
+.testimonials-wrap{
+  max-width:1280px;margin:0 auto;
+  padding:clamp(48px,6vw,64px) clamp(16px,4vw,48px) 0;
+  text-align:center;overflow:hidden;
+}
+.test-viewport{overflow:hidden;margin-top:28px;padding:2px 0 6px}
+.test-track{
+  display:flex;gap:clamp(18px,3vw,40px);text-align:left;
+  will-change:transform;
+}
+.test-track.is-scrolling{animation:testMarquee 20s linear infinite}
+.test-viewport:hover .test-track.is-scrolling{animation-play-state:paused}
+.test-card{
+  flex:0 0 clamp(240px,calc((100% - 80px)/3),340px);
+  background:#fff;border:1px solid #e5edf5;
+  border-radius:var(--radius-md);padding:20px;
+  box-shadow:var(--shadow-card);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.test-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lift)}
+.test-stars{color:#f59e0b;font-size:14px;letter-spacing:2px;margin-bottom:10px}
+.test-body{font-size:12px;line-height:1.65;color:#24364b;min-height:72px}
+.test-person{display:flex;align-items:center;gap:10px;margin-top:16px}
+.test-avatar{width:42px;height:42px;border-radius:50%;object-fit:cover;box-shadow:0 6px 16px rgba(15,23,42,.1)}
+.test-name{font-size:12px;font-weight:900;color:#07162c}
+.test-role{font-size:11px;color:#64748b;margin-top:1px}
+
+/* ============================================================
+   BOTTOM CTA
+   ============================================================ */
+.cta-wrap{
+  max-width:1280px;margin:clamp(36px,5vw,52px) auto clamp(24px,4vw,36px);
+  padding:0 clamp(16px,4vw,48px);
+}
+.cta-inner{
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:clamp(16px,3vw,28px);align-items:center;
+  background:#06152d;border-radius:var(--radius-lg);
+  padding:clamp(22px,3vw,32px) clamp(24px,5vw,72px);
+  box-shadow:0 22px 60px rgba(15,23,42,.18);
+}
+.cta-crest{width:72px;height:86px;object-fit:contain}
+.cta-copy h2{
+  font-family:"Plus Jakarta Sans",Manrope,sans-serif;
+  font-size:clamp(18px,2.5vw,24px);font-weight:900;
+  color:#fff;line-height:1.2;margin-bottom:6px;
+}
+.cta-copy p{font-size:13px;color:#cbd8e6;line-height:1.5}
+.cta-actions{display:flex;flex-direction:column;align-items:center;gap:8px}
+.cta-small{font-size:11px;font-weight:700;color:#9fb3c8}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background:linear-gradient(180deg,#06152d,#020713);
+  border-top:1px solid rgba(255,255,255,.06);
+  text-align:center;padding:clamp(22px,3vw,32px) 24px clamp(28px,4vw,40px);
+  color:rgba(255,255,255,.55);font-size:12.5px;
+}
+.footer-links{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:6px 14px;margin:8px 0 10px;
+}
+.footer-links a{color:rgba(255,255,255,.7);font-weight:700;transition:color .15s}
+.footer-links a:hover{color:#10b981}
+.footer-support{margin-top:6px}
+.footer-support a{color:#80d8c8;font-weight:700}
+
+/* ============================================================
+   ANIMATIONS & TRANSITIONS
+   ============================================================ */
+@keyframes heartFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes ecgScroll{from{transform:translateX(0)}to{transform:translateX(-900px)}}
+@keyframes fieldsMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--fw,50%)))}}
+@keyframes testMarquee{from{transform:translateX(0)}to{transform:translateX(calc(-1 * var(--tw,50%)))}}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablet: 1100px */
+@media(max-width:1100px){
+  .hero-inner{grid-template-columns:minmax(0,1fr) minmax(0,.9fr);grid-template-rows:auto auto}
+  .hero-panels{grid-template-columns:repeat(3,1fr);grid-row:2;grid-column:1/-1}
+  .hero-heart-col{grid-row:1;grid-column:2}
+  .stats-bar{grid-template-columns:repeat(3,1fr)}
+  .stat-item:nth-child(3){border-right:0}
+  .stat-item:nth-child(4){border-top:1px solid #edf1f6}
+  .stat-item:nth-child(5){border-top:1px solid #edf1f6;border-right:0}
+  .journey-grid{grid-template-columns:1fr;gap:36px}
+  .field-card{flex-basis:clamp(160px,calc((100% - 72px)/4),210px)}
+  .test-card{flex-basis:clamp(220px,calc((100% - 40px)/2),320px)}
+  .cta-inner{grid-template-columns:1fr auto}
+  .cta-crest{display:none}
+}
+
+/* Mobile: 768px */
+@media(max-width:768px){
+  html{scroll-padding-top:62px}
+  nav{height:62px;padding:0 16px;gap:8px}
+  .nav-links{display:none}
+  .nav-logo-text .t1{font-size:15px}
+  .nav-logo-text .t2{font-size:10px}
+  .nav-r .btn-ghost{display:none}
+
+  .hero{padding:88px 16px 52px}
+  .hero-inner{
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    gap:20px;
+  }
+  .hero-heart-col{
+    order:-1;min-height:240px;
+    grid-column:1;
+  }
+  .hero-heart{width:min(280px,82%)}
+  .med-badge{display:none}
+  .hero-panels{
+    grid-template-columns:1fr;
+    grid-row:auto;grid-column:1;
+  }
+  .hero-copy h1{font-size:clamp(30px,9vw,40px)}
+  .hero-sub{font-size:13px}
+  .hero-actions{display:grid;grid-template-columns:1fr}
+  .hero-actions .btn{width:100%;justify-content:center}
+  .hero-proof{grid-template-columns:1fr;gap:8px}
+
+  .stats-bar{
+    grid-template-columns:1fr;
+    margin-top:20px;
+  }
+  .stat-item{border-right:0;border-bottom:1px solid #edf1f6;min-height:64px;padding:0 20px}
+  .stat-item:last-child{border-bottom:0}
+
+  .section-wrap{padding-top:clamp(36px,6vw,52px);padding-left:16px;padding-right:16px}
+  .section-head-flex{flex-direction:column;align-items:flex-start}
+
+  .field-card{flex-basis:clamp(200px,72vw,280px)}
+
+  .journey-grid{gap:28px}
+  .dash-metrics{grid-template-columns:1fr}
+  .mini-ring{display:none}
+
+  .testimonials-wrap{padding-left:16px;padding-right:16px}
+  .test-card{flex-basis:84vw}
+
+  .cta-inner{
+    grid-template-columns:1fr;
+    padding:24px 20px;
+    text-align:center;
+  }
+  .cta-crest{display:none}
+  .cta-actions{align-items:center}
+  .cta-actions .btn{width:100%;max-width:260px}
+}
+
+@media(max-width:400px){
+  .hero-copy h1{font-size:28px}
+  .nav-logo-text .t2{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav id="main-nav">
+  <a class="nav-logo" href="index.html">
+    <img class="nav-logo-lockup" src="assets/healthpath-brand-logo.png?v=20260622a" alt="HealthPath Academy">
+  </a>
+
+  <div class="nav-links">
+    <a href="#clinical-fields">Courses <span class="chevron"></span></a>
+    <a href="#clinical-fields">Clinical Fields <span class="chevron"></span></a>
+    <a href="#preview">Resources <span class="chevron"></span></a>
+    <a href="app.html?previewAuth=1#study">Study Tools <span class="chevron"></span></a>
+    <a href="#trust">Pricing</a>
+  </div>
+
+  <div class="nav-r">
+    <span class="signed-out-nav">
+      <a class="btn-ghost" href="app.html?auth=signin">Log In</a>
+    </span>
+    <span class="signed-out-nav">
+      <a class="btn-signup" href="app.html?auth=signup">Sign Up Free</a>
+    </span>
+    <span class="signed-in-nav" id="signedInNav">
+      <button class="user-chip" onclick="toggleLandingMenu(event)" aria-label="Account menu">
+        <span class="avatar" id="landingAvatar">H</span>
+      </button>
+      <a class="btn-signup" href="app.html">Dashboard</a>
+      <div class="landing-menu" id="landingMenu">
+        <a href="app.html">Dashboard</a>
+        <button onclick="landingLogout()">Log out</button>
+      </div>
+    </span>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+     ============================================================ -->
+<section class="hero">
+  <div class="hero-inner">
+
+    <!-- Copy col -->
+    <div class="hero-copy">
+      <span class="hero-eyebrow">Your path. Your pace. Your future.</span>
+      <h1>Master healthcare.<span>Advance your future.</span></h1>
+      <p class="hero-sub">Build the knowledge, skills, and confidence to excel in healthcare with 1,476+ lessons across 8 clinical fields. Expert-created. Self-paced. Results-driven.</p>
+      <div class="hero-actions">
+        <span class="signed-out-nav"><a class="btn btn-primary" href="app.html?auth=signup">Start Learning Free &rarr;</a></span>
+        <span class="signed-out-nav"><a class="btn btn-outline" href="#clinical-fields">Explore Clinical Fields</a></span>
+        <span class="signed-in-nav"><a class="btn btn-primary" href="app.html">Open Dashboard &rarr;</a></span>
+      </div>
+      <ul class="hero-proof">
+        <li>Expert-Created Content</li>
+        <li>Self-Paced Learning</li>
+        <li>Track Your Progress</li>
+        <li>Learn Anywhere</li>
+      </ul>
+    </div>
+
+    <!-- Heart col -->
+    <div class="hero-heart-col" aria-hidden="true">
+      <div class="hero-ecg">
+        <svg viewBox="0 0 1800 90" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="ecgGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="rgba(14,165,233,0)"/>
+              <stop offset="22%" stop-color="#0284c7"/>
+              <stop offset="50%" stop-color="#38bdf8"/>
+              <stop offset="78%" stop-color="#0284c7"/>
+              <stop offset="100%" stop-color="rgba(14,165,233,0)"/>
+            </linearGradient>
+          </defs>
+          <g class="ecg-track">
+            <path class="ecg-base" d="M0 55 H320 L344 55 L368 14 L396 88 L422 55 H740 L764 55 L786 38 L810 72 L834 55 H900"/>
+            <path class="ecg-glow" d="M0 55 H320 L344 55 L368 14 L396 88 L422 55 H740 L764 55 L786 38 L810 72 L834 55 H900"/>
+            <path class="ecg-base" transform="translate(900 0)" d="M0 55 H320 L344 55 L368 14 L396 88 L422 55 H740 L764 55 L786 38 L810 72 L834 55 H900"/>
+            <path class="ecg-glow" transform="translate(900 0)" d="M0 55 H320 L344 55 L368 14 L396 88 L422 55 H740 L764 55 L786 38 L810 72 L834 55 H900"/>
+          </g>
+        </svg>
+      </div>
+      <img class="hero-heart" src="assets/healthpath-hero-heart.png" alt="">
+      <span class="med-badge a">ECG</span>
+      <span class="med-badge b">+</span>
+      <span class="med-badge c">Rx</span>
+    </div>
+
+    <!-- Right panels col -->
+    <div class="hero-panels" aria-hidden="true">
+
+      <!-- Today's Goal -->
+      <div class="hpanel">
+        <p class="hpanel-label">Today's Goal</p>
+        <div class="goal-row">
+          <div>
+            <p class="goal-text">0 of 3 lessons completed</p>
+            <div class="goal-meter-row">
+              <div class="goal-bar"><span></span></div>
+              <span class="goal-pct">0%</span>
+            </div>
+          </div>
+          <div class="goal-ring">
+            <div class="goal-ring-icon"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Streak -->
+      <div class="hpanel">
+        <p class="hpanel-label">Current Streak</p>
+        <div class="streak-top">
+          <span class="streak-fire">&#x1F525;</span>
+          <span class="streak-days">7</span>
+          <span class="streak-label">Days</span>
+        </div>
+        <p class="streak-sub">Keep it going!</p>
+        <div class="week-grid week-labels">
+          <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+        </div>
+        <div class="week-grid week-dots">
+          <span></span><span></span><span></span><span></span><span></span><span></span><span class="empty"></span>
+        </div>
+      </div>
+
+      <!-- Progress -->
+      <div class="hpanel">
+        <p class="hpanel-label">Overall Progress</p>
+        <div class="progress-row">
+          <div class="prog-ring"><b>75%</b></div>
+          <div class="prog-legend">
+            <span><i style="--c:#10b981"></i>Completed <b>12</b></span>
+            <span><i style="--c:#2563eb"></i>In Progress <b>4</b></span>
+            <span><i style="--c:#7c3aed"></i>Not Started <b>2</b></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     STATS BAR
+     ============================================================ -->
+<div class="stats-bar-wrap">
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24"><path d="M4 19c5-8 11-8 16 0"/><path d="M5 13c4-5 10-5 14 0"/><path d="M8 9c2-1.5 5.5-1.5 8 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
+      </div>
+      <div class="stat-text"><b data-count-to="1000" data-count-suffix="+">1000+</b><span>Lessons</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">
+        <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 0 1 4-4h4"/><circle cx="17" cy="11" r="3"/><path d="M21 21v-2a4 4 0 0 0-4-4h-1"/></svg>
+      </div>
+      <div class="stat-text"><b data-count-to="8">8</b><span>Clinical Fields</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon" style="color:#10b981">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+      </div>
+      <div class="stat-text"><b data-count-to="100" data-count-suffix="%">100%</b><span>Expert Created</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon" style="color:#7c3aed">
+        <svg viewBox="0 0 24 24"><circle cx="8" cy="7" r="3"/><circle cx="16" cy="7" r="3"/><path d="M2 21v-2a5 5 0 0 1 5-5h10a5 5 0 0 1 5 5v2"/></svg>
+      </div>
+      <div class="stat-text"><b data-count-to="10" data-count-suffix="K+">10K+</b><span>Active Learners</span></div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon" style="color:#f59e0b">
+        <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="stat-text"><b data-count-to="4.9" data-count-suffix="/5" data-count-decimals="1">4.9/5</b><span>Average Rating</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     CLINICAL FIELDS
+     ============================================================ -->
+<section class="section-wrap reveal" id="clinical-fields">
+  <div class="section-head-flex">
+    <div>
+      <span class="section-kicker">Clinical Fields</span>
+      <h2>Learn across 8 essential healthcare areas</h2>
+      <p>Each field includes structured modules, practice quizzes, and study resources.</p>
+    </div>
+    <a class="view-link" href="app.html?auth=signup">View all fields &rarr;</a>
+  </div>
+
+  <div class="fields-viewport">
+    <div class="fields-track" id="fieldsTrack">
+      <article class="field-card">
+        <div class="field-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-4 12c.8.7 1 1.5 1 2h6c0-.5.2-1.3 1-2a7 7 0 0 0-4-12z"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+        </div>
+        <h3>Dermatology</h3>
+        <p>Skin, hair, nails, inflammatory disease, lesions, and skin cancer recognition.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon blue">
+          <svg viewBox="0 0 24 24"><rect x="7" y="10" width="10" height="9" rx="2"/><path d="M9 10V7a3 3 0 0 1 6 0v3"/><line x1="12" y1="14" x2="12" y2="16"/></svg>
+        </div>
+        <h3>Nursing</h3>
+        <p>Assessment, bedside safety, care planning, medication administration, and patient education.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:1%"></span></div>
+          <small>1/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon pink">
+          <svg viewBox="0 0 24 24"><path d="M9 14l2-2 4-4"/><circle cx="6.5" cy="17.5" r="2.5"/><circle cx="17.5" cy="6.5" r="2.5"/></svg>
+        </div>
+        <h3>Pharmacology</h3>
+        <p>Drug mechanisms, dosing logic, adverse effects, interactions, and medication safety.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon red">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/><path d="M6 12h4l2-4 3 8 2-4h3" stroke="white" stroke-width="1.5" fill="none"/></svg>
+        </div>
+        <h3>Cardiology</h3>
+        <p>Heart physiology, ECGs, hypertension, heart failure, arrhythmia, and vascular risk.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon green">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><circle cx="12" cy="4" r="2"/><circle cx="20" cy="16" r="2"/><circle cx="4" cy="16" r="2"/><line x1="12" y1="6" x2="12" y2="9"/><line x1="14.2" y1="13.2" x2="18.1" y2="14.9"/><line x1="9.8" y1="13.2" x2="5.9" y2="14.9"/></svg>
+        </div>
+        <h3>Anatomy & Physiology</h3>
+        <p>Body systems, structure-function relationships, and clinically useful concepts.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon purple">
+          <svg viewBox="0 0 24 24"><path d="M12 3 20 6v6c0 5-3.3 8-8 9-4.7-1-8-4-8-9V6l8-3z"/><polygon points="12 8 13.3 10.7 16.2 11.1 14.1 13.1 14.6 16 12 14.6 9.4 16 9.9 13.1 7.8 11.1 10.7 10.7 12 8"/></svg>
+        </div>
+        <h3>Mental Health</h3>
+        <p>Psychiatric assessment, common disorders, safety planning, therapy basics, and medication concepts.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <!-- Duplicates for infinite scroll effect -->
+      <article class="field-card">
+        <div class="field-icon sky">
+          <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+        </div>
+        <h3>Emergency Care</h3>
+        <p>Rapid assessment, stabilization, triage, resuscitation, and time-sensitive emergencies.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+
+      <article class="field-card">
+        <div class="field-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19c5-8 11-8 16 0"/><path d="M5 13c4-5 10-5 14 0"/><path d="M8 9c2-1.5 5.5-1.5 8 0"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg>
+        </div>
+        <h3>Epidemiology</h3>
+        <p>Study design, disease measures, screening, outbreak investigation, and evidence appraisal.</p>
+        <div class="field-card-meta">
+          <b>82 Lessons</b>
+          <div class="field-bar"><span style="width:0%"></span></div>
+          <small>0/82 complete</small>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="dot-row">
+    <span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- ============================================================
+     HOW IT WORKS + DASHBOARD + WHY
+     ============================================================ -->
+<section class="section-wrap reveal" id="how-it-works">
+  <div class="journey-grid">
+
+    <!-- Steps col -->
+    <div class="steps-col">
+      <span class="section-kicker">How It Works</span>
+      <h2 style="font-family:'Plus Jakarta Sans',Manrope,sans-serif;font-size:clamp(20px,2.5vw,26px);font-weight:900;color:#07162c;line-height:1.2;margin-bottom:22px">Your journey to mastery in 5 steps</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><circle cx="17.5" cy="17.5" r="3.5"/></svg>
+        </div>
+        <div><h3>Choose a Clinical Field</h3><p>Pick the subject you want to master.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div><h3>Learn with Expert Lessons</h3><p>Read lessons crafted by professionals.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 8 12 12 14 14"/></svg>
+        </div>
+        <div><h3>Practice &amp; Test</h3><p>Reinforce knowledge with quizzes.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <div><h3>Track Your Progress</h3><p>Monitor your performance and growth.</p></div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-icon">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+        </div>
+        <div><h3>Earn Certificates</h3><p>Showcase your skills and achievements.</p></div>
+      </div>
+    </div>
+
+    <!-- Dashboard col -->
+    <div class="dash-card" aria-hidden="true">
+      <span class="section-kicker">Track. Learn. Achieve.</span>
+      <h2>Your all-in-one<br>learning dashboard</h2>
+
+      <div class="dash-window">
+        <div class="dash-rail">
+          <div class="dash-rail-btn active">
+            <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          </div>
+          <div class="dash-rail-btn"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+          <div class="dash-rail-btn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+          <div class="dash-rail-btn"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+          <div class="dash-rail-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+        </div>
+
+        <div class="dash-main">
+          <div class="dash-box">
+            <div class="dash-metrics">
+              <div>
+                <p class="dash-box-title">Welcome back, Sarah! <span class="wave-emoji" aria-hidden="true"></span></p>
+                <span class="dash-close">&times;</span>
+                <div class="dash-list">
+                  <div class="dash-list-item">
+                    <div class="dash-dot" style="--cr:16;--cg:185;--cb:129"></div>
+                    <span>Lessons Completed</span><b class="dash-val">12</b>
+                  </div>
+                  <div class="dash-list-item">
+                    <div class="dash-dot" style="--cr:37;--cg:99;--cb:235"></div>
+                    <span>Lessons In Progress</span><b class="dash-val">4</b>
+                  </div>
+                  <div class="dash-list-item">
+                    <div class="dash-dot" style="--cr:124;--cg:58;--cb:237"></div>
+                    <span>Quizzes Taken</span><b class="dash-val">10</b>
+                  </div>
+                  <div class="dash-list-item">
+                    <div class="dash-dot" style="--cr:239;--cg:68;--cb:68"></div>
+                    <span>Certificates Earned</span><b class="dash-val">2</b>
+                  </div>
+                  <div class="dash-list-item">
+                    <div class="dash-dot" style="--cr:245;--cg:158;--cb:11"></div>
+                    <span>Current Streak</span><b class="dash-val">7 Days</b>
+                  </div>
+                </div>
+              </div>
+              <div class="mini-ring"><b data-ring-target="75">0%</b></div>
+            </div>
+          </div>
+
+          <div class="dash-box">
+            <div class="dash-activity">
+              <div>
+                <p class="dash-activity-title">Weekly Activity</p>
+                <div class="mini-week-labels">
+                  <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span>
+                </div>
+                <div class="mini-week">
+                  <span></span><span></span><span></span><span></span><span></span><span class="empty"></span>
+                </div>
+              </div>
+              <div class="mini-streak">
+                <span class="mini-streak-fire">&#x1F525;</span>
+                <div style="font-size:11px;font-weight:900;color:#fff;line-height:1.3">7<br><span style="font-size:9px;color:#9fb3c8;font-weight:700">Day Streak</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Why col -->
+    <div class="why-col" id="trust">
+      <span class="section-kicker">Built For Results</span>
+      <h2>Why learners choose HealthPath</h2>
+      <div class="why-list">
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Structured lessons and modules</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Interactive quizzes and exams</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Study guides and resources</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Progress tracking and analytics</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Certificates to showcase your skills</span>
+        </div>
+        <div class="why-item">
+          <div class="why-check"><svg viewBox="0 0 12 12"><polyline points="2 6 5 9 10 3"/></svg></div>
+          <span>Learn anytime, anywhere</span>
+        </div>
+      </div>
+      <span class="signed-out-nav"><a class="btn btn-primary" href="app.html?auth=signup">Start Learning Free</a></span>
+      <span class="signed-in-nav"><a class="btn btn-primary" href="app.html">Open Dashboard</a></span>
+      <p style="font-size:11px;color:#9fb3c8;margin-top:9px">No credit card required</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     TESTIMONIALS
+     ============================================================ -->
+<section class="testimonials-wrap reveal" id="resources">
+  <span class="section-kicker" style="justify-content:center;display:block">What Our Learners Say</span>
+  <h2 style="font-family:'Plus Jakarta Sans',Manrope,sans-serif;font-size:clamp(22px,3vw,28px);font-weight:900;color:#07162c;margin-top:6px">Real learners. Real results.</h2>
+
+  <div class="test-viewport">
+    <div class="test-track" id="testTrack">
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"HealthPath Academy has been a game-changer for my studies. The lessons are clear, concise, and exactly what I needed to build confidence."</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-jessica.svg" alt="">
+          <div><p class="test-name">Jessica M.</p><p class="test-role">Medical Assistant Student</p></div>
+        </div>
+      </article>
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"The quizzes and study guides help me test my knowledge and actually remember what I learn. Highly recommend!"</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-david.svg" alt="">
+          <div><p class="test-name">David R.</p><p class="test-role">Nursing Student</p></div>
+        </div>
+      </article>
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"I love how I can learn on my own schedule and track my progress. The streak feature keeps me motivated every day!"</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-sarah.svg" alt="">
+          <div><p class="test-name">Sarah L.</p><p class="test-role">Phlebotomy Technician</p></div>
+        </div>
+      </article>
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"The cardiology lessons helped me connect ECG basics with what I was seeing during clinical rotations."</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-maya.svg" alt="">
+          <div><p class="test-name">Maya P.</p><p class="test-role">Respiratory Therapy Student</p></div>
+        </div>
+      </article>
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"I use it before shifts when I need a quick safety-focused review. The red flags and workflow tips are very useful."</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-omar.svg" alt="">
+          <div><p class="test-name">Omar K.</p><p class="test-role">Patient Care Technician</p></div>
+        </div>
+      </article>
+      <article class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-body">"The patient-friendly wording makes it easier to explain concepts without sounding too technical."</p>
+        <div class="test-person">
+          <img class="test-avatar" src="assets/review-avatar-alina.svg" alt="">
+          <div><p class="test-name">Alina C.</p><p class="test-role">Public Health Learner</p></div>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="dot-row">
+    <span></span><span></span><span></span>
+  </div>
+</section>
+
+<!-- ============================================================
+     BOTTOM CTA
+     ============================================================ -->
+<div class="cta-wrap reveal">
+  <div class="cta-inner">
+    <img class="cta-crest" src="assets/healthpath-crest.png" alt="">
+    <div class="cta-copy">
+      <h2>Start your journey today</h2>
+      <p>Join thousands of healthcare learners who are building knowledge, confidence, and better futures.</p>
+    </div>
+    <div class="cta-actions">
+      <span class="signed-out-nav"><a class="btn btn-primary" href="app.html?auth=signup">Create Free Account</a></span>
+      <span class="signed-in-nav"><a class="btn btn-primary" href="app.html">Open Dashboard</a></span>
+      <p class="cta-small">No credit card required</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div>HealthPath Academy &mdash; educational content only, not a substitute for clinical judgment or local medical protocols.</div>
+  <div class="footer-links">
+    <a href="disclaimer.html">Medical Disclaimer</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="footer-support">Support: <a href="mailto:healthpath27@gmail.com">healthpath27@gmail.com</a></div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+/* Nav scroll */
+const nav = document.getElementById('main-nav');
+const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 10);
+onScroll();
+window.addEventListener('scroll', onScroll, { passive: true });
+
+/* Stats count-up */
+function animateStatCounters(){
+  document.querySelectorAll('[data-count-to]').forEach(el => {
+    const target = Number(el.dataset.countTo || 0);
+    const suffix = el.dataset.countSuffix || '';
+    const decimals = Number(el.dataset.countDecimals || 0);
+    const duration = 1050;
+    const start = performance.now();
+    const tick = now => {
+      const progress = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = `${value.toFixed(decimals)}${suffix}`;
+      if(progress < 1) requestAnimationFrame(tick);
+      else el.textContent = `${target.toFixed(decimals)}${suffix}`;
+    };
+    requestAnimationFrame(tick);
+  });
+}
+if(document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', animateStatCounters, { once:true });
+}else{
+  animateStatCounters();
+}
+
+/* Reveal on scroll */
+function animateMiniRingNumber(root){
+  const label = root.querySelector('[data-ring-target]');
+  if(!label || label.dataset.animated === 'true') return;
+  label.dataset.animated = 'true';
+  const target = Number(label.dataset.ringTarget || 75);
+  const duration = 1150;
+  const start = performance.now();
+  const tick = now => {
+    const progress = Math.min(1, (now - start) / duration);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    label.textContent = `${Math.round(target * eased)}%`;
+    if(progress < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      animateMiniRingNumber(e.target);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+/* Fields marquee - clone children so it loops */
+(function() {
+  const track = document.getElementById('fieldsTrack');
+  if (!track) return;
+  const cards = Array.from(track.children);
+  cards.forEach(c => track.appendChild(c.cloneNode(true)));
+  const totalW = track.scrollWidth / 2;
+  track.style.setProperty('--fw', totalW + 'px');
+  track.classList.add('is-scrolling');
+})();
+
+/* Testimonials marquee */
+(function() {
+  const track = document.getElementById('testTrack');
+  if (!track) return;
+  const cards = Array.from(track.children);
+  cards.forEach(c => track.appendChild(c.cloneNode(true)));
+  const totalW = track.scrollWidth / 2;
+  track.style.setProperty('--tw', totalW + 'px');
+  track.classList.add('is-scrolling');
+})();
+
+/* Auth state */
+function avatarData(user = {}) {
+  const label = (user.name || user.email || 'H').trim();
+  const initial = (label.match(/[a-z0-9]/i)?.[0] || 'H').toUpperCase();
+  let seed = 0;
+  for (const ch of (user.uid || user.email || label)) seed = (seed * 31 + ch.charCodeAt(0)) % 360;
+  return { initial, a1: `hsl(${seed} 58% 54%)`, a2: `hsl(${(seed + 68) % 360} 72% 44%)`, photo: user.photoURL || '' };
+}
+function firstName(user = {}) {
+  const base = (user.name || user.email?.split('@')[0] || 'there').trim();
+  return base.split(/\s+/)[0] || 'there';
+}
+function updateLandingAuth() {
+  let user = null;
+  try { user = JSON.parse(localStorage.hp_user || 'null'); } catch {}
+  document.querySelectorAll('.signed-out-nav').forEach(el => el.style.display = user?.uid ? 'none' : 'inline-flex');
+  document.querySelectorAll('.signed-in-nav').forEach(el => el.style.display = user?.uid ? 'inline-flex' : 'none');
+  if (!user?.uid) return;
+  const a = avatarData(user);
+  const avatar = document.getElementById('landingAvatar');
+  if (avatar) {
+    avatar.style.setProperty('--a1', a.a1);
+    avatar.style.setProperty('--a2', a.a2);
+    avatar.innerHTML = a.photo ? `<img src="${a.photo}" alt="">` : a.initial;
+  }
+}
+function toggleLandingMenu(event) {
+  event.stopPropagation();
+  document.getElementById('landingMenu')?.classList.toggle('show');
+}
+function landingLogout() {
+  if (window.landingFirebaseLogout) window.landingFirebaseLogout();
+  ['hp_user','hp_done','hp_read','hp_saved','hp_scores','hp_notes','hp_last'].forEach(k => localStorage.removeItem(k));
+  document.getElementById('landingMenu')?.classList.remove('show');
+  updateLandingAuth();
+}
+document.addEventListener('click', () => document.getElementById('landingMenu')?.classList.remove('show'));
+updateLandingAuth();
+
+/* Smooth scroll for anchor links */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'));
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+/* Service Worker */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/service-worker.js').then(reg => {
+      if (reg.waiting) reg.waiting.postMessage('SKIP_WAITING');
+      reg.addEventListener('updatefound', () => {
+        const worker = reg.installing;
+        if (worker) worker.addEventListener('statechange', () => {
+          if (worker.state === 'installed' && navigator.serviceWorker.controller) worker.postMessage('SKIP_WAITING');
+        });
+      });
+      reg.update().catch(() => {});
+    }).catch(() => {});
+  });
+}
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDMr8Yh8o0mpVtz-xq6B51ujmI04HJfmRo",
+  authDomain: "healthpath-academy.firebaseapp.com",
+  projectId: "healthpath-academy",
+  storageBucket: "healthpath-academy.firebasestorage.app",
+  messagingSenderId: "6330040450",
+  appId: "1:6330040450:web:8412b202b1d1163308749b",
+  measurementId: "G-B3T8QW7KT9"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+window.landingFirebaseLogout = () => signOut(auth).catch(() => {});
+onAuthStateChanged(auth, user => {
+  if (user) {
+    const profile = {
+      uid: user.uid,
+      name: user.displayName || user.email?.split("@")[0] || "HealthPath learner",
+      email: user.email || "",
+      photoURL: user.photoURL || ""
+    };
+    localStorage.hp_user = JSON.stringify(profile);
+  }
+  updateLandingAuth();
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+node_modules/
+functions/node_modules/
+functions/.env
+functions/.env.*
+!functions/.env.example
+.firebase/
+.npm-cache/
+.npm-global/
+.tmp-hp-syntax*/
+.script-checks/
+promo-videos/

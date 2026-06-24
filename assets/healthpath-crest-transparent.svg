@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">HealthPath Academy Crest</title>
+  <desc id="desc">Transparent crest logo with teal shield, white medical cross, and learning path.</desc>
+  <defs>
+    <linearGradient id="shield" x1="18" y1="8" x2="80" y2="88" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#14b8a6"/>
+      <stop offset=".55" stop-color="#0d9488"/>
+      <stop offset="1" stop-color="#0c2340"/>
+    </linearGradient>
+    <linearGradient id="route" x1="30" y1="62" x2="69" y2="28" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d1fae5"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="145%">
+      <feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#0c2340" flood-opacity=".18"/>
+    </filter>
+  </defs>
+  <path filter="url(#softShadow)" d="M48 7.5 16 19.7v23.7c0 21.4 13.8 39.5 32 45.1 18.2-5.6 32-23.7 32-45.1V19.7L48 7.5Z" fill="url(#shield)"/>
+  <path d="M48 15.7 23.7 25v18.6c0 16.4 10 30.7 24.3 36.3 14.3-5.6 24.3-19.9 24.3-36.3V25L48 15.7Z" fill="none" stroke="#ffffff" stroke-opacity=".24" stroke-width="2"/>
+  <path d="M43.2 25.8h9.6c1.9 0 3.4 1.5 3.4 3.4v13.2h13.2c1.9 0 3.4 1.5 3.4 3.4v9.6c0 1.9-1.5 3.4-3.4 3.4H56.2V72c0 1.9-1.5 3.4-3.4 3.4h-9.6c-1.9 0-3.4-1.5-3.4-3.4V58.8H26.6c-1.9 0-3.4-1.5-3.4-3.4v-9.6c0-1.9 1.5-3.4 3.4-3.4h13.2V29.2c0-1.9 1.5-3.4 3.4-3.4Z" fill="#ffffff"/>
+  <path d="M31 63.4c7.4-1.5 12.4-4.8 15.6-9.2 2.6-3.6 4.3-8 7.7-11.2 3-2.9 7.1-4.7 12.7-5.4" fill="none" stroke="url(#route)" stroke-width="5.5" stroke-linecap="round"/>
+  <circle cx="31" cy="63.4" r="3.5" fill="#d1fae5"/>
+  <circle cx="67" cy="37.6" r="3.5" fill="#ffffff"/>
+</svg>

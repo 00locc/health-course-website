@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="112" fill="#e6faf8"/>
+  <g transform="translate(85 64) scale(3.56)">
+    <defs>
+      <linearGradient id="shield" x1="18" y1="8" x2="80" y2="88" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#14b8a6"/>
+        <stop offset=".55" stop-color="#0d9488"/>
+        <stop offset="1" stop-color="#0c2340"/>
+      </linearGradient>
+      <linearGradient id="route" x1="30" y1="62" x2="69" y2="28" gradientUnits="userSpaceOnUse">
+        <stop offset="0" stop-color="#d1fae5"/>
+        <stop offset="1" stop-color="#ffffff"/>
+      </linearGradient>
+    </defs>
+    <path d="M48 7.5 16 19.7v23.7c0 21.4 13.8 39.5 32 45.1 18.2-5.6 32-23.7 32-45.1V19.7L48 7.5Z" fill="url(#shield)"/>
+    <path d="M43.2 25.8h9.6c1.9 0 3.4 1.5 3.4 3.4v13.2h13.2c1.9 0 3.4 1.5 3.4 3.4v9.6c0 1.9-1.5 3.4-3.4 3.4H56.2V72c0 1.9-1.5 3.4-3.4 3.4h-9.6c-1.9 0-3.4-1.5-3.4-3.4V58.8H26.6c-1.9 0-3.4-1.5-3.4-3.4v-9.6c0-1.9 1.5-3.4 3.4-3.4h13.2V29.2c0-1.9 1.5-3.4 3.4-3.4Z" fill="#fff"/>
+    <path d="M31 63.4c7.4-1.5 12.4-4.8 15.6-9.2 2.6-3.6 4.3-8 7.7-11.2 3-2.9 7.1-4.7 12.7-5.4" fill="none" stroke="url(#route)" stroke-width="5.5" stroke-linecap="round"/>
+    <circle cx="31" cy="63.4" r="3.5" fill="#d1fae5"/>
+    <circle cx="67" cy="37.6" r="3.5" fill="#fff"/>
+  </g>
+</svg>
