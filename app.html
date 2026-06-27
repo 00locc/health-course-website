@@ -6615,30 +6615,123 @@ function renderStudyPlan(){
 
 // ===== Personalized Study Planner (premium) =====
 function plannerHasPlan(){ return !!(state.planner&&state.planner.examDate); }
+const PLANNER_EXAM_RULES=[
+  {terms:["nclex","hesi","ati","rn","lpn","lvn","nursing","nurse"],topics:["nursing","pharmacology","infection","lab","emergency","mental","pediatrics","nutrition","cardiology"]},
+  {terms:["cna","nurse aide","nursing assistant","pct","patient care tech"],topics:["nursing","infection","nutrition","anatomy","mental","genpractice"]},
+  {terms:["emt","nremt","paramedic","ems","emergency medical"],topics:["emergency","cardiology","anatomy","pharmacology","lab","pediatrics"]},
+  {terms:["ekg","ecg","telemetry","cardiac monitor"],topics:["cardiology","emergency","lab","anatomy"]},
+  {terms:["phlebotomy","phlebotomist","lab tech","mlt","medical laboratory"],topics:["lab","infection","anatomy","genpractice"]},
+  {terms:["pharmacy tech","ptcb","excp","pharmacy technician"],topics:["pharmacology","lab","infection","genpractice"]},
+  {terms:["medical assistant","ccma","rma","cma"],topics:["genpractice","nursing","lab","pharmacology","cardiology","infection"]},
+  {terms:["public health","ches","cph","epidemiology"],topics:["publichealth","epidemiology","infection","nutrition"]},
+  {terms:["usmle","comlex","board","boards","final exam","final","midterm"],topics:["anatomy","internal","pharmacology","lab","cardiology","emergency","infection","mental","pediatrics"]},
+  {terms:["mcat","teas","hpat","health science"],topics:["anatomy","lab","epidemiology","pharmacology","mental","nutrition"]}
+];
+function plannerSearchText(examNameOverride){
+  return cleanText([
+    examNameOverride||state.planner?.examName,
+    state.user?.goal,
+    Array.isArray(state.user?.goals)?state.user.goals.join(" "):"",
+    state.user?.role,
+    state.user?.studyFocus,
+    state.studyField
+  ].filter(Boolean).join(" ")).toLowerCase();
+}
+function plannerExamKeywords(examNameOverride){
+  const text=plannerSearchText(examNameOverride);
+  const aliases={
+    nclex:["nursing","medication","pharmacology","infection","safety","assessment","care plan","patient teaching","pediatric","mental health","lab"],
+    hesi:["nursing","medication","assessment","safety","patient teaching","lab","infection"],
+    ati:["nursing","medication","assessment","safety","patient teaching","lab","infection"],
+    cna:["vital signs","bedside safety","infection","mobility","nutrition","patient care","documentation"],
+    emt:["airway","breathing","circulation","shock","trauma","cardiac arrest","stroke","triage","emergency"],
+    nremt:["airway","breathing","circulation","shock","trauma","cardiac arrest","stroke","triage","emergency"],
+    ekg:["ecg","cardiac","rhythm","heart block","atrial fibrillation","tachycardia","bradycardia"],
+    ecg:["ecg","cardiac","rhythm","heart block","atrial fibrillation","tachycardia","bradycardia"],
+    phlebotomy:["specimen","blood","lab","venipuncture","infection","safety","labeling"],
+    ptcb:["pharmacology","medication","dose","drug","interaction","safety","formulary"],
+    pharmacy:["pharmacology","medication","dose","drug","interaction","safety","formulary"],
+    "medical assistant":["vital signs","patient education","lab","medication","documentation","clinical workflow"],
+    usmle:["pathophysiology","diagnosis","pharmacology","lab","cardiology","emergency","infection"],
+    mcat:["anatomy","physiology","biology","chemistry","behavior","public health"],
+    teas:["anatomy","physiology","science","lab","nutrition","health"]
+  };
+  const out=new Set(text.split(/[^a-z0-9]+/).filter(w=>w.length>2));
+  Object.entries(aliases).forEach(([key,words])=>{ if(text.includes(key))words.forEach(w=>out.add(w)); });
+  return [...out];
+}
+function plannerMatchedTopics(examNameOverride){
+  const text=plannerSearchText(examNameOverride);
+  const ids=[];
+  PLANNER_EXAM_RULES.forEach(rule=>{
+    if(rule.terms.some(term=>text.includes(term)))rule.topics.forEach(id=>{ if(!ids.includes(id))ids.push(id); });
+  });
+  if(Array.isArray(state.planner?.matchedTopicIds))state.planner.matchedTopicIds.forEach(id=>{ if(!ids.includes(id))ids.push(id); });
+  TOPICS.forEach(topic=>{
+    const topicText=(topic.id+" "+topic.name+" "+topic.role).toLowerCase();
+    if(text&&topicText.split(/\s+/).some(word=>word.length>3&&text.includes(word))&&!ids.includes(topic.id))ids.push(topic.id);
+  });
+  [state.user?.studyFocus==="other"?null:state.user?.studyFocus,state.studyField,state.last?.topicId,roleStartCourse(state.user?.role||"")].filter(Boolean).forEach(id=>{ if(!ids.includes(id))ids.push(id); });
+  if(!ids.length)ids.push(studyCourseTopic().id);
+  return ids.map(id=>TOPICS.find(t=>t.id===id)).filter(Boolean).slice(0,6);
+}
+function plannerLessonScore(topic,lesson,keywords){
+  const content=lesson.content||{};
+  const text=cleanText([
+    topic.name,topic.role,lesson.module,lesson.title,
+    content.title,content.summary,
+    Array.isArray(content.objectives)?content.objectives.join(" "):"",
+    Array.isArray(content.redFlags)?content.redFlags.join(" "):""
+  ].filter(Boolean).join(" ")).toLowerCase();
+  let score=0;
+  keywords.forEach(word=>{
+    if(!word||word.length<3)return;
+    if(lesson.title.toLowerCase().includes(word))score+=18;
+    if((lesson.module||"").toLowerCase().includes(word))score+=8;
+    if(topic.name.toLowerCase().includes(word)||topic.id.includes(word))score+=12;
+    if(text.includes(word))score+=4;
+  });
+  const exam=plannerSearchText();
+  PLANNER_EXAM_RULES.forEach((rule,idx)=>{ if(rule.topics.includes(topic.id)&&rule.terms.some(term=>exam.includes(term)))score+=60-idx; });
+  if(state.read.has(lesson.id))score-=4;
+  if(state.done.has(lesson.id))score-=25;
+  return score;
+}
+function plannerRankedLessonRefs(topics){
+  const keywords=plannerExamKeywords();
+  const refs=topics.flatMap(topic=>allLessons(topic).map(lesson=>({topic,lesson,score:plannerLessonScore(topic,lesson,keywords)})));
+  refs.sort((a,b)=>b.score-a.score||a.lesson.sortRank-b.lesson.sortRank||a.lesson.sourceOrder-b.lesson.sourceOrder);
+  return refs.map(({topic,lesson})=>({topic,lesson}));
+}
 function plannerDaysLeft(){ if(!plannerHasPlan())return null; const today=new Date(); today.setHours(0,0,0,0); const ex=new Date(state.planner.examDate+"T00:00:00"); return Math.round((ex-today)/86400000); }
 function plannerCountdownLabel(){ const d=plannerDaysLeft(); if(d===null)return "Build your study plan"; const nm=state.planner.examName||"your exam"; if(d<0)return `${nm} has passed`; if(d===0)return `${nm} is today — good luck!`; if(d===1)return `1 day until ${nm}`; return `${d} days until ${nm}`; }
-function plannerCourseLessons(){ const t=studyCourseTopic(); let ls=[]; try{ls=allLessons(t);}catch(e){ls=[];} return {topic:t,lessons:ls}; }
-function plannerProgress(){ const {lessons}=plannerCourseLessons(); const total=lessons.length||1; const done=lessons.filter(l=>state.done.has(l.id)).length; return {done,total,pct:Math.round(done/total*100)}; }
+function plannerCourseLessons(){ let topics=[]; try{topics=plannerMatchedTopics();}catch(e){topics=[studyCourseTopic()].filter(Boolean);} const lessons=plannerRankedLessonRefs(topics); return {topic:topics[0]||studyCourseTopic(),topics,lessons}; }
+function plannerProgress(){ const {lessons}=plannerCourseLessons(); const total=lessons.length||1; const done=lessons.filter(ref=>state.done.has(ref.lesson.id)).length; return {done,total,pct:Math.round(done/total*100)}; }
 function plannerDailyTarget(){
   const {lessons}=plannerCourseLessons();
-  const remaining=lessons.filter(l=>!state.done.has(l.id)).length;
+  const remaining=lessons.filter(ref=>!state.done.has(ref.lesson.id)).length;
   const days=Math.max(1,plannerDaysLeft()||1);
   const weekly=Number(state.planner?.weeklyTarget||7);
   const needPerDay=Math.ceil(remaining/days);
-  const pacePerDay=Math.max(1,Math.round(weekly/7));
-  return {remaining,days,needPerDay,pacePerDay,onTrack:pacePerDay>=needPerDay||remaining===0,target:Math.max(1,Math.min(needPerDay||1,8))};
+  const pacePerDay=Math.max(1,Math.ceil(weekly/7));
+  const target=Math.max(1,Math.min(Math.max(pacePerDay,needPerDay||1),8,remaining||1));
+  return {remaining,days,weekly,needPerDay,pacePerDay,onTrack:pacePerDay>=needPerDay||remaining===0,target};
 }
 function plannerTodayItems(){
-  const {topic,lessons}=plannerCourseLessons();
+  const {topics,lessons}=plannerCourseLessons();
+  const topicIds=new Set((topics||[]).map(t=>t.id));
   const items=[], seen=new Set();
-  const due=(typeof reviewDueLessons==="function"?reviewDueLessons():[]).slice(0,3);
-  due.forEach(r=>{ if(seen.has(r.lesson.id))return; seen.add(r.lesson.id); items.push({type:"review",topic:r.topic,lesson:r.lesson,label:"Review (due)",tone:"#0d9488"}); });
-  const weak=(typeof reviewWeakLessons==="function"?reviewWeakLessons():[]).slice(0,2);
-  weak.forEach(r=>{ if(seen.has(r.lesson.id))return; seen.add(r.lesson.id); items.push({type:"quiz",topic:r.topic,lesson:r.lesson,label:`Retry quiz · ${r.score}%`,tone:"#f97316"}); });
   const target=plannerDailyTarget().target;
+  const canAdd=()=>items.length<target;
+  const due=(typeof reviewDueLessons==="function"?reviewDueLessons():[]).filter(r=>!topicIds.size||topicIds.has(r.topic.id)).slice(0,3);
+  due.forEach(r=>{ if(!canAdd()||seen.has(r.lesson.id))return; seen.add(r.lesson.id); items.push({type:"review",topic:r.topic,lesson:r.lesson,label:"Review (due)",tone:"#0d9488"}); });
+  const weak=(typeof reviewWeakLessons==="function"?reviewWeakLessons():[]).filter(r=>!topicIds.size||topicIds.has(r.topic.id)).slice(0,2);
+  weak.forEach(r=>{ if(!canAdd()||seen.has(r.lesson.id))return; seen.add(r.lesson.id); items.push({type:"quiz",topic:r.topic,lesson:r.lesson,label:`Retry quiz · ${r.score}%`,tone:"#f97316"}); });
+  
   let added=0;
-  for(const lesson of lessons){
-    if(added>=target)break;
+  for(const ref of lessons){
+    if(!canAdd())break;
+    const {topic,lesson}=ref;
     if(state.done.has(lesson.id)||seen.has(lesson.id))continue;
     seen.add(lesson.id); items.push({type:"lesson",topic,lesson,label:"New lesson",tone:"#2563eb"}); added++;
   }
@@ -6715,7 +6808,8 @@ function savePlannerSetup(){
   const today=new Date(); today.setHours(0,0,0,0);
   const ex=new Date(date+"T00:00:00");
   const totalDays=Math.max(1,Math.round((ex-today)/86400000));
-  state.planner={examName:name,examDate:date,weeklyTarget:Number(window.__plWeekly||7),totalDays,createdAt:Date.now()};
+  const matchedTopicIds=plannerMatchedTopics(name).map(t=>t.id);
+  state.planner={examName:name,examDate:date,weeklyTarget:Number(window.__plWeekly||7),matchedTopicIds,totalDays,createdAt:Date.now()};
   savePlanner();
   toast("Study plan saved");
   renderStudyPlanner();
@@ -6814,7 +6908,10 @@ html.reduce-motion .pl-hero,html.reduce-motion .pl-progress,html.reduce-motion .
 </style>`}
 // ===== Exam Simulator (premium) =====
 let EXAM_SESSION=null, EXAM_TIMER=null;
-function examUnlocked(){ return !!(state.user&&state.user.billing&&state.user.billing.premium) || (typeof isAdmin==="function"&&isAdmin()) || localStorage.hp_exam_preview==="1"; }
+function localPremiumPreview(){
+  return ["localhost","127.0.0.1",""].includes(location.hostname) || location.protocol==="file:";
+}
+function examUnlocked(){ return !!(state.user&&state.user.billing&&state.user.billing.premium) || (typeof isAdmin==="function"&&isAdmin()) || localPremiumPreview(); }
 function buildExamPool(topicId){
   const topics=topicId?TOPICS.filter(t=>t.id===topicId):TOPICS.slice();
   const out=[], seen=new Set();
