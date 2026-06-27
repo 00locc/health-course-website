@@ -10,34 +10,197 @@
 <link rel="icon" href="assets/healthpath-crest.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--teal:#0d9488;--navy:#0c2340;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f7fafc}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.7}
-nav{height:64px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);font-weight:900}.logo img{width:32px;height:32px}.logo span{color:var(--teal)}
-nav a:not(.logo){margin-left:auto;color:var(--muted);font-weight:800;text-decoration:none}
-main{max-width:880px;margin:0 auto;padding:42px 22px 70px}
-h1,h2{font-family:"Plus Jakarta Sans",Inter,sans-serif;color:var(--navy);line-height:1.15}h1{font-size:42px;margin:0 0 12px}h2{margin-top:30px}
-.card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(15,23,42,.06)}
-.muted{color:var(--muted)}a{color:var(--teal)}footer{text-align:center;color:var(--muted);padding:24px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+  body{font-family:Manrope,ui-sans-serif,system-ui,-apple-system,sans-serif;background:#07162c;color:#e7eef7;line-height:1.5;overflow-x:hidden}
+  img{max-width:100%;display:block}
+  a{text-decoration:none}
+  .page{position:relative;min-height:100vh;background-color:#07162c;background-image:radial-gradient(120% 90% at 88% -5%,rgba(16,185,129,.12),transparent 46%),radial-gradient(110% 80% at -8% 8%,rgba(37,99,235,.13),transparent 50%)}
+  .progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:120;background:rgba(255,255,255,.05)}
+  .progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,#10b981,#34d8b4);box-shadow:0 0 14px rgba(16,185,129,.6);transition:width .12s linear}
+  .page>nav{position:fixed;top:0;left:0;right:0;z-index:110;height:70px;display:flex;align-items:center;padding:0 clamp(18px,4vw,48px);gap:18px;background:#020713;border-bottom:1px solid rgba(255,255,255,.07)}
+  .logo{display:inline-flex;align-items:center;gap:9px}
+  .logo img{width:34px;height:34px;object-fit:contain}
+  .logo b{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;color:#fff;letter-spacing:-.02em}
+  .logo b i{color:#10b981;font-style:normal}
+  .back{margin-left:auto;display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.7);font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+  .back:hover{color:#fff;border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.08)}
+  header.hero{position:relative;padding:130px clamp(20px,5vw,48px) 44px;max-width:1080px;margin:0 auto;overflow:hidden}
+  .ecg{position:absolute;top:96px;left:0;width:100%;height:200px;opacity:.5;pointer-events:none}
+  .ecg polyline{stroke-dasharray:1400;animation:ecgDraw 2.6s cubic-bezier(.7,0,.3,1) .3s both,ecgPulse 3.4s ease-in-out 3s infinite}
+  @keyframes ecgDraw{from{stroke-dashoffset:1400}to{stroke-dashoffset:0}}
+  @keyframes ecgPulse{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes sirenPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.28);color:#34d8b4;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:20px}
+  h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(40px,6vw,62px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.04;margin:0 0 16px;max-width:16ch}
+  h1 i{color:#10b981;font-style:normal}
+  .lede{font-size:16px;color:rgba(255,255,255,.66);line-height:1.65;font-weight:500;max-width:56ch;margin:0 0 22px}
+  .stamp{display:inline-flex;align-items:center;gap:9px;padding:8px 14px;border-radius:10px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09)}
+  .stamp i{width:7px;height:7px;border-radius:50%;background:#10b981;box-shadow:0 0 10px rgba(16,185,129,.8);font-style:normal}
+  .stamp span{font-size:12.5px;font-weight:700;color:rgba(255,255,255,.75)}
+  .body{max-width:1080px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 90px;display:grid;grid-template-columns:230px 1fr;gap:clamp(32px,5vw,64px);align-items:start}
+  aside{position:sticky;top:100px;align-self:start}
+  .toc-label{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:#5f7188;margin-bottom:16px;padding-left:14px}
+  .toc{display:flex;flex-direction:column;gap:2px;border-left:1px solid rgba(255,255,255,.1)}
+  .toc a{display:flex;align-items:center;gap:7px;padding:9px 0 9px 14px;margin-left:-1px;border-left:2px solid transparent;color:rgba(255,255,255,.55);font-size:13.5px;font-weight:700;line-height:1.3;transition:all .2s}
+  .toc a:hover{color:rgba(255,255,255,.9);border-left-color:rgba(16,185,129,.45);transform:translateX(3px)}
+  .toc a.active{color:#fff;border-left-color:#10b981;transform:translateX(2px);font-weight:800}
+  .toc .dot{width:6px;height:6px;border-radius:50%;background:#f87171;box-shadow:0 0 8px rgba(248,113,113,.8)}
+  main{display:flex;flex-direction:column;gap:18px}
+  section.card{scroll-margin-top:96px;background:linear-gradient(155deg,rgba(22,38,68,.6),rgba(10,22,44,.55));border:1px solid rgba(148,163,184,.14);border-radius:18px;padding:30px 32px;box-shadow:0 18px 44px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.04)}
+  section.alert{background:linear-gradient(155deg,rgba(74,24,28,.5),rgba(40,14,18,.45));border-color:rgba(248,113,113,.34);box-shadow:0 18px 44px rgba(60,0,0,.26),inset 0 1px 0 rgba(255,255,255,.04)}
+  .card-head{display:flex;align-items:center;gap:14px;margin-bottom:14px}
+  .num{display:grid;place-items:center;width:38px;height:38px;border-radius:11px;background:rgba(16,185,129,.13);border:1px solid rgba(16,185,129,.28);color:#34d8b4;font-family:'Plus Jakarta Sans',sans-serif;font-size:15px;font-weight:800}
+  .num.warn{position:relative;background:rgba(248,113,113,.16);border-color:rgba(248,113,113,.4);color:#fca5a5}
+  .num.warn .siren{position:absolute;top:-4px;right:-4px;width:9px;height:9px;border-radius:50%;background:#f87171;box-shadow:0 0 10px rgba(248,113,113,.9);animation:sirenPulse 1.8s ease-in-out infinite}
+  h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:22px;font-weight:800;color:#fff;letter-spacing:-.01em}
+  .card p{font-size:15px;line-height:1.72;color:rgba(255,255,255,.74);font-weight:500}
+  .alert p{color:rgba(255,255,255,.82)}
+  .alert strong{color:#fca5a5}
+  .lead{display:flex;gap:16px;align-items:flex-start;background:linear-gradient(120deg,rgba(16,185,129,.12),rgba(37,99,235,.08));border:1px solid rgba(16,185,129,.24);border-radius:18px;padding:26px 30px}
+  .lead .shield{flex-shrink:0;display:grid;place-items:center;width:40px;height:40px;border-radius:11px;background:rgba(16,185,129,.16);border:1px solid rgba(16,185,129,.3);margin-top:2px}
+  .lead p{font-size:15.5px;line-height:1.7;color:rgba(255,255,255,.82);font-weight:600;margin:0}
+  .lead strong{color:#fff}
+  .contact{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;background:linear-gradient(120deg,rgba(16,185,129,.1),rgba(37,99,235,.08));border:1px solid rgba(16,185,129,.2);border-radius:18px;padding:26px 32px}
+  .contact h3{font-family:'Plus Jakarta Sans',sans-serif;font-size:18px;font-weight:800;color:#fff;margin:0 0 5px}
+  .contact p{font-size:14px;color:rgba(255,255,255,.66);font-weight:500;margin:0}
+  .btn{flex-shrink:0;display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:11px;background:#10b981;color:#fff;font-weight:800;font-size:14px;box-shadow:0 12px 28px rgba(16,185,129,.3);transition:all .2s}
+  .btn:hover{background:#059669;transform:translateY(-2px)}
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:28px 24px;text-align:center}
+  footer .links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:13px;color:#5f7188;font-weight:600}
+  footer a{color:#5f7188;transition:color .2s}
+  footer a:hover{color:#34d8b4}
+  footer .sep{opacity:.5}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  @media (max-width:760px){.body{grid-template-columns:1fr}aside{display:none}}
+  @media (prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.ecg polyline,.num.warn .siren{animation:none}}
 </style>
 </head>
 <body>
-<nav><a class="logo" href="index.html"><img src="assets/healthpath-crest.png" alt="">Health<span>Path</span></a><a href="index.html">Back to site</a></nav>
-<main><div class="card">
-<h1>Medical Disclaimer</h1>
-<p class="muted">Last updated: May 15, 2026</p>
-<p>HealthPath Academy provides educational health content for learning, studying, and professional review. It is not medical advice, diagnosis, treatment, prescribing guidance, emergency care, or a substitute for professional judgment.</p>
-<h2>Not A Patient-Care Tool</h2>
-<p>HealthPath lessons may discuss symptoms, diseases, tests, medications, prevention, and clinical workflows, but the content is general education. It should not be used to make decisions for a specific patient without appropriate professional evaluation, local protocols, and current clinical guidance.</p>
-<h2>Emergencies</h2>
-<p>If you or someone else may be experiencing a medical emergency, call your local emergency number or seek urgent local care immediately. Examples include chest pain, stroke symptoms, severe breathing trouble, heavy bleeding, severe allergic reaction, seizure, suicidal thoughts, or rapidly worsening illness.</p>
-<h2>Professional Scope</h2>
-<p>Students and professionals should follow their training level, supervisor guidance, institutional policies, scope of practice, and applicable laws. Medication doses, procedures, emergency pathways, and guidelines can change and must be verified from current authoritative sources.</p>
-<h2>Accuracy</h2>
-<p>We aim to provide accurate, understandable education and include trusted reference links where possible. Health information changes over time, and HealthPath may not reflect the newest guideline, local standard, drug label, or patient-specific consideration.</p>
-</div></main>
-<footer><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a> · <a href="contact.html">Contact</a></footer>
+<div class="page">
+  <div class="progress"><span id="bar"></span></div>
+
+  <nav>
+    <a class="logo" href="index.html"><img src="assets/healthpath-crest.png" alt=""><b>Health<i>Path</i></b></a>
+    <a class="back" href="index.html">&larr; Back to site</a>
+  </nav>
+
+  <header class="hero">
+    <svg class="ecg" viewBox="0 0 1400 200" preserveAspectRatio="none">
+      <polyline points="0,120 380,120 430,120 455,60 485,170 515,90 545,120 900,120 940,120 965,75 995,160 1025,110 1055,120 1400,120" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+    </svg>
+    <div class="reveal">
+      <span class="eyebrow">Safety &middot; HealthPath Academy</span>
+      <h1>Medical <i>Disclaimer</i></h1>
+      <p class="lede">What HealthPath is &mdash; and isn't. Read this before you rely on anything here for clinical decisions.</p>
+      <div class="stamp"><i></i><span>Last updated May 15, 2026</span></div>
+    </div>
+  </header>
+
+  <div class="body">
+    <aside>
+      <div class="toc-label">On this page</div>
+      <nav class="toc" id="toc">
+        <a href="#sec-1">Not a Patient-Care Tool</a>
+        <a href="#sec-2">Emergencies<span class="dot"></span></a>
+        <a href="#sec-3">Professional Scope</a>
+        <a href="#sec-4">Accuracy</a>
+      </nav>
+    </aside>
+
+    <main>
+      <div class="lead reveal">
+        <span class="shield"><svg viewBox="0 0 24 24" style="width:21px;height:21px;stroke:#34d8b4;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+        <p>HealthPath Academy provides educational health content for learning, studying, and professional review. It is <strong>not medical advice, diagnosis, treatment, prescribing guidance, emergency care, or a substitute for professional judgment.</strong></p>
+      </div>
+
+      <section class="card reveal" id="sec-1">
+        <div class="card-head"><span class="num">01</span><h2>Not a Patient-Care Tool</h2></div>
+        <p>HealthPath lessons may discuss symptoms, diseases, tests, medications, prevention, and clinical workflows, but the content is general education. It should not be used to make decisions for a specific patient without appropriate professional evaluation, local protocols, and current clinical guidance.</p>
+      </section>
+
+      <section class="card alert reveal" id="sec-2">
+        <div class="card-head"><span class="num warn"><svg viewBox="0 0 24 24" style="width:20px;height:20px;stroke:#fca5a5;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round"><path d="M12 3L2 20h20L12 3z"></path><line x1="12" y1="10" x2="12" y2="14"></line><circle cx="12" cy="17" r="0.6" fill="#fca5a5" stroke="none"></circle></svg><span class="siren"></span></span><h2>Emergencies</h2></div>
+        <p>If you or someone else may be experiencing a medical emergency, <strong>call your local emergency number or seek urgent local care immediately.</strong> Examples include chest pain, stroke symptoms, severe breathing trouble, heavy bleeding, severe allergic reaction, seizure, suicidal thoughts, or rapidly worsening illness.</p>
+      </section>
+
+      <section class="card reveal" id="sec-3">
+        <div class="card-head"><span class="num">03</span><h2>Professional Scope</h2></div>
+        <p>Students and professionals should follow their training level, supervisor guidance, institutional policies, scope of practice, and applicable laws. Medication doses, procedures, emergency pathways, and guidelines can change and must be verified from current authoritative sources.</p>
+      </section>
+
+      <section class="card reveal" id="sec-4">
+        <div class="card-head"><span class="num">04</span><h2>Accuracy</h2></div>
+        <p>We aim to provide accurate, understandable education and include trusted reference links where possible. Health information changes over time, and HealthPath may not reflect the newest guideline, local standard, drug label, or patient-specific consideration.</p>
+      </section>
+
+      <section class="contact reveal">
+        <div>
+          <h3>Something unclear or out of date?</h3>
+          <p>Tell us &mdash; we review safety and accuracy feedback closely.</p>
+        </div>
+        <a class="btn" href="contact.html">Contact us &rarr;</a>
+      </section>
+    </main>
+  </div>
+
+  <footer>
+    <div class="links">
+      <a href="privacy.html">Privacy</a><span class="sep">&middot;</span>
+      <a href="terms.html">Terms</a><span class="sep">&middot;</span>
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('main section[id]'));
+  var links = Array.prototype.slice.call(document.querySelectorAll('#toc a'));
+  var bar = document.getElementById('bar');
+  var lockUntil = 0;
+
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else { reveals.forEach(function(el){ el.classList.add('in'); }); }
+  setTimeout(function(){ reveals.forEach(function(el){ el.classList.add('in'); }); }, 1500);
+
+  function setActive(id){
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); });
+  }
+
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = a.getAttribute('href').slice(1);
+      var t = document.getElementById(id);
+      if(!t) return;
+      var top = t.getBoundingClientRect().top + window.scrollY - 90;
+      window.scrollTo({top: top, behavior: 'smooth'});
+      lockUntil = Date.now() + 800;
+      setActive(id);
+    });
+  });
+
+  function onScroll(){
+    var doc = document.documentElement;
+    var max = (doc.scrollHeight - doc.clientHeight) || 1;
+    bar.style.width = Math.min(100, Math.max(0, (window.scrollY/max)*100)) + '%';
+    if(Date.now() < lockUntil) return;
+    var current = sections[0];
+    sections.forEach(function(s){ if(s.getBoundingClientRect().top <= 140) current = s; });
+    if(current) setActive(current.id);
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+</script>
 </body>
 </html>

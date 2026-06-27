@@ -15,28 +15,165 @@
 <link rel="icon" href="assets/healthpath-crest.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--teal:#0d9488;--navy:#0c2340;--text:#0f172a;--muted:#64748b;--border:#e2e8f0;--bg:#f7fafc}
-body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Arial,sans-serif;line-height:1.7}
-nav{height:64px;background:white;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:16px}.logo{display:flex;align-items:center;gap:10px;min-width:0;text-decoration:none;transition:transform .18s ease}.logo:hover{transform:translateY(-1px)}.mark{width:34px;height:34px;border-radius:9px;background:transparent;display:grid;place-items:center;flex:0 0 auto}.mark img{width:100%;height:100%;display:block}.logo b{font-family:"Plus Jakarta Sans",Inter,sans-serif;font-size:17px;color:var(--navy);font-weight:900;white-space:nowrap}.logo span{color:var(--teal)}nav a:not(.logo){margin-left:auto;flex:0 0 auto;color:var(--muted);font-weight:800;text-decoration:none}@media (max-width:420px){nav{padding:0 16px}.mark{width:30px;height:30px}.logo b{font-size:14px;max-width:145px;overflow:hidden;text-overflow:ellipsis}}
-main{max-width:880px;margin:0 auto;padding:42px 22px 70px}.card{background:white;border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 10px 30px rgba(15,23,42,.06)}
-h1,h2{font-family:"Plus Jakarta Sans",Inter,sans-serif;color:var(--navy);line-height:1.15}h1{font-size:42px;margin:0 0 12px}h2{margin-top:30px}.muted{color:var(--muted)}a{color:var(--teal)}.contact-box{background:#ecfdf5;border:1px solid #bbf7d0;border-radius:14px;padding:16px;margin-top:18px}.contact-box a{font-size:18px;font-weight:800}footer{text-align:center;color:var(--muted);padding:24px}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  body{font-family:Manrope,ui-sans-serif,system-ui,-apple-system,sans-serif;background:#07162c;color:#e7eef7;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  img{display:block;max-width:100%}
+  .page{position:relative;min-height:100vh;background-color:#07162c;background-image:radial-gradient(120% 90% at 88% -5%,rgba(16,185,129,.1),transparent 46%),radial-gradient(110% 80% at -8% 8%,rgba(37,99,235,.12),transparent 50%)}
+  /* nav */
+  nav{position:fixed;top:0;left:0;right:0;z-index:110;height:70px;display:flex;align-items:center;gap:18px;padding:0 clamp(18px,4vw,48px);background:#020713;border-bottom:1px solid rgba(255,255,255,.07)}
+  .logo{display:inline-flex;align-items:center;gap:9px;transition:transform .18s}
+  .logo:hover{transform:translateY(-1px)}
+  .logo img{width:34px;height:34px;object-fit:contain}
+  .logo b{font-family:'Plus Jakarta Sans',sans-serif;font-size:17px;font-weight:800;color:#fff;letter-spacing:-.02em}
+  .logo b i{color:#10b981;font-style:normal}
+  .back{margin-left:auto;display:inline-flex;align-items:center;gap:7px;color:rgba(255,255,255,.7);font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:9px;border:1px solid rgba(255,255,255,.12);transition:all .2s}
+  .back:hover{color:#fff;border-color:rgba(16,185,129,.4);background:rgba(16,185,129,.08)}
+  /* hero */
+  header.hero{position:relative;overflow:hidden;padding:130px clamp(20px,5vw,48px) 56px;max-width:1040px;margin:0 auto;text-align:center}
+  .ecg{position:absolute;top:108px;left:0;width:100%;height:200px;opacity:.45;pointer-events:none}
+  .ecg polyline{stroke-dasharray:1400;animation:ecgDraw 2.6s cubic-bezier(.7,0,.3,1) .3s both,ecgPulse 3.4s ease-in-out 3s infinite}
+  @keyframes ecgDraw{from{stroke-dashoffset:1400}to{stroke-dashoffset:0}}
+  @keyframes ecgPulse{0%,100%{opacity:.55}50%{opacity:1}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:99px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.28);color:#34d8b4;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px}
+  h1{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(38px,6vw,58px);font-weight:800;color:#fff;letter-spacing:-.03em;line-height:1.05;margin:0 0 16px}
+  h1 i{color:#10b981;font-style:normal}
+  .hero p{font-size:clamp(15px,1.7vw,16.5px);color:rgba(255,255,255,.66);line-height:1.62;font-weight:500;max-width:560px;margin:0 auto}
+  /* content */
+  main{max-width:1040px;margin:0 auto;padding:0 clamp(20px,5vw,48px) 80px;position:relative}
+  /* email feature card */
+  .email-card{position:relative;overflow:hidden;background:linear-gradient(150deg,rgba(16,185,129,.16),rgba(37,99,235,.12));border:1px solid rgba(16,185,129,.26);border-radius:20px;padding:clamp(26px,4vw,38px);box-shadow:0 24px 60px rgba(0,0,0,.3);margin-bottom:18px}
+  .email-card::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:radial-gradient(circle,rgba(16,185,129,.3),transparent 70%);pointer-events:none}
+  .email-in{position:relative;z-index:1;display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .email-ic{flex:0 0 auto;width:58px;height:58px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);display:grid;place-items:center}
+  .email-ic svg{width:26px;height:26px;stroke:#5eead4;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .email-meta{flex:1;min-width:220px}
+  .email-meta .lbl{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em;color:#34d8b4;margin-bottom:5px}
+  .email-meta a{font-family:'Plus Jakarta Sans',sans-serif;font-size:clamp(20px,3vw,26px);font-weight:800;color:#fff;letter-spacing:-.01em;transition:color .15s}
+  .email-meta a:hover{color:#5eead4}
+  .email-meta p{font-size:12.5px;color:rgba(255,255,255,.6);margin-top:6px;font-weight:500;line-height:1.5}
+  .email-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:11px;background:#10b981;color:#fff;font-weight:800;font-size:14px;box-shadow:0 12px 28px rgba(16,185,129,.32);transition:all .18s}
+  .email-btn:hover{background:#059669;transform:translateY(-2px)}
+  /* reason cards */
+  .reasons{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
+  .rcard{background:linear-gradient(155deg,rgba(22,38,68,.6),rgba(10,22,44,.55));border:1px solid rgba(148,163,184,.14);border-radius:16px;padding:24px;box-shadow:0 14px 36px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.04);transition:transform .18s,box-shadow .18s,border-color .18s}
+  .rcard:hover{transform:translateY(-4px);box-shadow:0 22px 48px rgba(0,0,0,.32);border-color:rgba(16,185,129,.32)}
+  .rcard .ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;margin-bottom:14px}
+  .rcard .ic svg{width:21px;height:21px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .ic.teal{background:rgba(16,185,129,.14);color:#34d8b4}
+  .ic.blue{background:rgba(37,99,235,.16);color:#7eb0ff}
+  .rcard h2{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:800;color:#fff;margin-bottom:8px}
+  .rcard p{font-size:13px;color:rgba(255,255,255,.66);line-height:1.6;font-weight:500}
+  /* emergency banner */
+  .emergency{display:flex;align-items:flex-start;gap:14px;background:linear-gradient(155deg,rgba(74,24,28,.5),rgba(40,14,18,.45));border:1px solid rgba(248,113,113,.34);border-radius:16px;padding:18px 20px;box-shadow:0 14px 36px rgba(60,0,0,.24)}
+  .emergency .ic{position:relative;flex:0 0 auto;width:40px;height:40px;border-radius:11px;background:rgba(248,113,113,.16);border:1px solid rgba(248,113,113,.4);color:#fca5a5;display:grid;place-items:center}
+  .emergency .ic svg{width:20px;height:20px;stroke:currentColor;stroke-width:2.2;fill:none;stroke-linecap:round;stroke-linejoin:round}
+  .emergency .ic .siren{position:absolute;top:-4px;right:-4px;width:9px;height:9px;border-radius:50%;background:#f87171;box-shadow:0 0 10px rgba(248,113,113,.9);animation:sirenPulse 1.8s ease-in-out infinite}
+  @keyframes sirenPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.25)}}
+  .emergency b{font-family:'Plus Jakarta Sans',sans-serif;color:#fca5a5;font-size:14.5px;display:block;margin-bottom:3px}
+  .emergency p{font-size:13px;color:rgba(255,255,255,.72);line-height:1.55;font-weight:500}
+  footer{border-top:1px solid rgba(255,255,255,.07);padding:28px 24px;text-align:center}
+  footer .links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;font-size:13px;color:#5f7188;font-weight:600}
+  footer a{color:#5f7188;transition:color .2s}
+  footer a:hover{color:#34d8b4}
+  footer .sep{opacity:.5}
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:translateY(0)}
+  @media(max-width:780px){.reasons{grid-template-columns:1fr}.email-in{flex-direction:column;align-items:flex-start}.email-btn{width:100%;justify-content:center}}
+  @media (prefers-reduced-motion:reduce){.reveal{transition:none;opacity:1;transform:none}.ecg polyline,.emergency .ic .siren{animation:none}}
 </style>
 </head>
 <body>
-<nav><a class="logo" href="index.html"><div class="mark"><img src="assets/healthpath-crest.png" alt="HealthPath Academy crest"></div><b>Health<span>Path</span> Academy</b></a><a href="index.html">Back to site</a></nav>
-<main><div class="card">
-<h1>Contact</h1>
-<p class="muted">Use this page for support, corrections, and feedback.</p>
-<h2>Content Corrections</h2>
-<p>If you notice a lesson that seems unclear, outdated, or inaccurate, include the topic name, lesson title, and what should be reviewed. Do not include private patient information.</p>
-<h2>Account Support</h2>
-<p>For account or progress issues, include the email address used for login and a short description of the problem.</p>
-<div class="contact-box"><b>Support email:</b><br><a href="mailto:healthpath27@gmail.com">healthpath27@gmail.com</a><br><span class="muted">Use this for account help, bug reports, lesson corrections, and general HealthPath feedback.</span></div>
-<h2>Emergency Warning</h2>
-<p>Do not use this page for urgent health concerns. If someone may be in danger, seek local emergency care immediately.</p>
-</div></main>
-<footer><a href="disclaimer.html">Medical Disclaimer</a> · <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+<div class="page">
+  <nav>
+    <a class="logo" href="index.html"><img src="assets/healthpath-crest.png" alt="HealthPath Academy crest"><b>Health<i>Path</i></b></a>
+    <a class="back" href="index.html">&larr; Back to site</a>
+  </nav>
+
+  <header class="hero">
+    <svg class="ecg" viewBox="0 0 1400 200" preserveAspectRatio="none">
+      <polyline points="0,120 380,120 430,120 455,60 485,170 515,90 545,120 900,120 940,120 965,75 995,160 1025,110 1055,120 1400,120" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"></polyline>
+    </svg>
+    <div class="reveal">
+      <span class="eyebrow">Contact</span>
+      <h1>We're here to <i>help.</i></h1>
+      <p>Questions, corrections, or feedback &mdash; reach the HealthPath team and we'll get back to you. Choose what you need below.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="email-card reveal">
+      <div class="email-in">
+        <span class="email-ic"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+        <div class="email-meta">
+          <div class="lbl">Support Email</div>
+          <a class="support-email" href="#" data-user="healthpath27" data-domain="gmail.com">healthpath27 at gmail.com</a>
+          <p>Account help, bug reports, lesson corrections, and general HealthPath feedback.</p>
+        </div>
+        <a class="email-btn support-email-link" href="#" data-user="healthpath27" data-domain="gmail.com">Send a message &rarr;</a>
+      </div>
+    </div>
+
+    <div class="reasons">
+      <article class="rcard reveal">
+        <span class="ic teal"><svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span>
+        <h2>Content Corrections</h2>
+        <p>Spot a lesson that's unclear, outdated, or inaccurate? Include the topic name, lesson title, and what should be reviewed. Never include private patient information.</p>
+      </article>
+      <article class="rcard reveal">
+        <span class="ic blue"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg></span>
+        <h2>Account Support</h2>
+        <p>Having trouble with your account or progress? Include the email address used to log in and a short description of the problem so we can help fast.</p>
+      </article>
+      <article class="rcard reveal">
+        <span class="ic teal"><svg viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6c0 4 3 5 3 8h6c0-3 3-4 3-8a6 6 0 0 0-6-6Z"/><path d="M9 21h6"/></svg></span>
+        <h2>General Feedback</h2>
+        <p>Ideas, requests, or just want to tell us what's working? We read every message and use it to make HealthPath better for learners.</p>
+      </article>
+    </div>
+
+    <div class="emergency reveal">
+      <span class="ic"><svg viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><span class="siren"></span></span>
+      <div>
+        <b>Not for emergencies</b>
+        <p>Please don't use this page for urgent health concerns. If someone may be in danger, seek local emergency care immediately.</p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="links">
+      <a href="disclaimer.html">Medical Disclaimer</a><span class="sep">&middot;</span>
+      <a href="privacy.html">Privacy</a><span class="sep">&middot;</span>
+      <a href="terms.html">Terms</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  document.querySelectorAll('.support-email').forEach(function(link){
+    var email = link.dataset.user + '@' + link.dataset.domain;
+    link.textContent = email;
+    link.href = 'mailto:' + email;
+  });
+  document.querySelectorAll('.support-email-link').forEach(function(link){
+    var email = link.dataset.user + '@' + link.dataset.domain;
+    link.href = 'mailto:' + email;
+  });
+
+  var reveals = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+    }, {threshold:0.15, rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else { reveals.forEach(function(el){ el.classList.add('in'); }); }
+  setTimeout(function(){ reveals.forEach(function(el){ el.classList.add('in'); }); }, 1500);
+})();
+</script>
 </body>
 </html>
