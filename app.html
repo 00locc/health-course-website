@@ -2139,10 +2139,18 @@ body.dark ::-webkit-scrollbar-thumb{background:#214459!important;border-color:#0
   display:grid!important;
   place-items:center!important;
   font-style:normal!important;
-  font-size:16px!important;
+  font-size:0!important;
   font-weight:900!important;
 }
+.notify-menu i.notify-ic svg{width:18px!important;height:18px!important;display:block!important;stroke:currentColor!important;stroke-width:2.2!important;fill:none!important;stroke-linecap:round!important;stroke-linejoin:round!important}
 .notify-menu i.notify-ic::before{display:none!important}
+.notify-menu i.notify-ic::after{content:"";display:block;width:16px;height:16px;border:2px solid currentColor;border-radius:50%;box-sizing:border-box}
+.notify-menu i.notify-achievement::after{border:0;background:currentColor;clip-path:polygon(50% 0,62% 35%,100% 35%,69% 56%,81% 100%,50% 73%,19% 100%,31% 56%,0 35%,38% 35%)}
+.notify-menu i.notify-certificate::after{border:2px solid currentColor;border-radius:3px;box-shadow:0 6px 0 -3px currentColor}
+.notify-menu i.notify-lesson::after{border-radius:2px;border-width:2px;border-left-width:5px}
+.notify-menu i.notify-review::after{border-right-color:transparent;transform:rotate(-35deg)}
+.notify-menu i.notify-saved::after{border:0;background:currentColor;clip-path:polygon(12% 0,88% 0,88% 100%,50% 74%,12% 100%)}
+.notify-menu i.notify-streak::after{border:0;background:currentColor;clip-path:polygon(50% 0,70% 35%,58% 35%,72% 100%,30% 58%,43% 58%)}
 .notify-menu .notify-item b{display:block!important;color:#07162c!important;font-size:12px!important;font-weight:800!important;line-height:1.25!important}
 .notify-menu .notify-item span{display:block!important;margin-top:2px!important;color:#64748b!important;font-size:11px!important;line-height:1.35!important}
 .notify-menu .notify-time{font-size:10.5px!important;color:#94a3b8!important;font-weight:700!important;white-space:nowrap!important;padding-top:2px!important}
